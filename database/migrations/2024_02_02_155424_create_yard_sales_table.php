@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('yard_sales', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->index();
+            $table->string('title');
+            $table->string('description');
+            $table->string('location');
+            $table->date('date');
+            $table->json('items')->nullable();
             $table->timestamps();
         });
     }

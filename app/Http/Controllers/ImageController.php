@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRatingRequest;
-use App\Http\Requests\UpdateRatingRequest;
-use App\Models\Rating;
+use App\Http\Requests\StoreImageRequest;
+use App\Http\Requests\UpdateImageRequest;
+use App\Models\Image;
 
-class RatingController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class RatingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRatingRequest $request)
+    public function store(StoreImageRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class RatingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rating $rating)
+    public function show(Image $image)
     {
         //
     }
@@ -43,7 +43,7 @@ class RatingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rating $rating)
+    public function edit(Image $image)
     {
         //
     }
@@ -51,7 +51,7 @@ class RatingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRatingRequest $request, Rating $rating)
+    public function update(UpdateImageRequest $request, Image $image)
     {
         //
     }
@@ -59,7 +59,7 @@ class RatingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rating $rating)
+    public function destroy(Image $image)
     {
         //
     }

@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_category_id')->index();
+            $table->string('title');
+            $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

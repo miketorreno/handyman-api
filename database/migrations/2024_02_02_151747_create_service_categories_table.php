@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('service_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('category');
+            $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->index();
-            $table->string('title');
-            $table->string('description');
-            $table->string('location');
-            $table->timestamp('date_and_time');
-            $table->tinyInteger('event_type')->default(1);
-            $table->json('rsvp_list')->nullable();
+            $table->foreignId('user_id');
+            $table->morphs('reportable');
+            $table->tinyInteger('rating')->nullable();
+            $table->text('review')->nullable();
+            $table->foreignId('image_id')->nullable();
+            $table->boolean('edited')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('reviews');
     }
 };

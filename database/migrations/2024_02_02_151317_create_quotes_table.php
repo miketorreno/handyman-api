@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id')->index();
+            $table->foreignId('handyman_id')->index();
+            $table->string('quote_details');
+            $table->string('price');
+            $table->tinyInteger('acceptance_status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

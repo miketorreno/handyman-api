@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->tinyInteger('role')->default(1);
+            $table->string('location')->nullable();
+            $table->string('language')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->timestamp('banned_at')->nullable();
+            $table->softDeletes();
         });
     }
 
