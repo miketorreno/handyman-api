@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
+use App\Http\Resources\ServiceResource;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
-use App\Models\Service;
 
 class ServiceController extends Controller
 {
@@ -13,7 +14,13 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::query()
+            ->with(['serviceCategory'])
+            ->paginate();
+
+        return ServiceResource::collection(
+            $services
+        );
     }
 
     /**

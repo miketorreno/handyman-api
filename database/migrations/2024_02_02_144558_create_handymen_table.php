@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('handymen', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
-            $table->foreignId('featured_image_id')->index()->nullable();
-            $table->foreignId('service_id')->index();
-            $table->foreignId('category_id')->index();
-            $table->string('about');
+            $table->foreignId('image_id')->index()->nullable();
+            $table->foreignId('service_id')->index()->index();
+            $table->foreignId('category_id')->index()->index();
+            $table->foreignId('subscription_type_id')->index();
+            $table->string('about')->nullable();
             $table->json('tools')->nullable();
             $table->string('membership_level')->nullable();
             $table->string('reputation_score')->nullable();
@@ -29,7 +30,6 @@ return new class extends Migration
             $table->json('certifications')->nullable();
             $table->json('languages')->nullable();
             $table->tinyInteger('approval_status')->default(1);
-            $table->foreignId('subscription_type_id')->index();
             $table->timestamps();
             $table->timestamp('banned_at')->nullable();
             $table->softDeletes();

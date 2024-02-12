@@ -17,7 +17,8 @@ class ServiceCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'category' => fake()->word(),
+            'description' => fake()->sentence(),
         ];
     }
 }

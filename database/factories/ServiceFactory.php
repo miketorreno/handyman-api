@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'service_category_id' => ServiceCategory::factory(),
+            'title' => fake()->word(),
+            'description' => fake()->sentence(),
         ];
     }
 }

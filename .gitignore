@@ -6,6 +6,7 @@
 /storage/*.key
 /vendor
 /TODO.md
+/trash
 .env
 .env.backup
 .env.production
