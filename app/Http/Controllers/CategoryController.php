@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ServiceCategory;
-use App\Http\Resources\ServiceCategoryResource;
-use App\Http\Requests\StoreServiceCategoryRequest;
-use App\Http\Requests\UpdateServiceCategoryRequest;
+use App\Models\Category;
+use App\Http\Resources\CategoryResource;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
-class ServiceCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = ServiceCategory::query()
+        $categories = Category::query()
             ->paginate();
 
-        return ServiceCategoryResource::collection(
+        return CategoryResource::collection(
             $categories
         );
     }
@@ -33,7 +33,7 @@ class ServiceCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreServiceCategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         //
     }
@@ -41,7 +41,7 @@ class ServiceCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ServiceCategory $serviceCategory)
+    public function show(Category $category)
     {
         //
     }
@@ -49,7 +49,7 @@ class ServiceCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ServiceCategory $serviceCategory)
+    public function edit(Category $category)
     {
         //
     }
@@ -57,7 +57,7 @@ class ServiceCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateServiceCategoryRequest $request, ServiceCategory $serviceCategory)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
     }
@@ -65,7 +65,7 @@ class ServiceCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ServiceCategory $serviceCategory)
+    public function destroy(Category $category)
     {
         //
     }

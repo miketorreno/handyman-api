@@ -7,13 +7,13 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
-class ServiceCategoryControllerTest extends TestCase
+class CategoryControllerTest extends TestCase
 {
     use LazilyRefreshDatabase;
     
-    public function test_it_lists_categories()
+    public function test_lists_categories()
     {
-        $response = $this->get('/api/categories');
+        $response = $this->getJson('/api/categories');
 
         $response->assertOk();
 

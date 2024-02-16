@@ -3,10 +3,19 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Quote;
+use App\Models\Review;
+use App\Models\Service;
+use App\Models\Category;
+use App\Models\SubscriptionType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Handyman extends User
 {
@@ -22,8 +31,6 @@ class Handyman extends User
     protected $fillable = [
         'user_id',
         'image_id',
-        'service_id',
-        'category_id',
         'subscription_type_id',
         'about',
         'tools',
@@ -45,10 +52,36 @@ class Handyman extends User
         'hidden' => 'bool',
         'group_type' => 'integer',
         'approval_status' => 'integer',
+        'languages' => 'array',
     ];
     
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
+    public function quotes(): HasMany
+    {
+        return $this->hasMany(Quote::class);
+    }
+
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    public function subscriptionType(): BelongsTo
+    {
+        return $this->belongsTo(SubscriptionType::class);
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Quote;
+use App\Models\Handyman;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,11 @@ class QuoteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'handyman_id' => Handyman::factory(),
+            'quote_details' => fake()->sentence(),
+            'price' => rand(11,999999),
+            'acceptance_status' => Quote::ACCEPTANCE_ACCEPTED,
         ];
     }
 }

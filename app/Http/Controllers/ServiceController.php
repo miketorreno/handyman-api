@@ -15,7 +15,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::query()
-            ->with(['serviceCategory'])
+            ->with(['category'])
             ->paginate();
 
         return ServiceResource::collection(

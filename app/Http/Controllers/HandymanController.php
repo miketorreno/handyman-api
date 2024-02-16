@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Handyman;
+use App\Http\Resources\HandymanResource;
 use App\Http\Requests\StoreHandymanRequest;
 use App\Http\Requests\UpdateHandymanRequest;
-use App\Models\Handyman;
 
 class HandymanController extends Controller
 {
@@ -13,7 +14,44 @@ class HandymanController extends Controller
      */
     public function index()
     {
-        //
+        $handymen = Handyman::query()
+            ->where('approval_status', Handyman::APPROVAL_APPROVED)
+            ->when(request('location'), 
+                fn ($builder) => $builder->whereRelation('user', 'location', '=', request('location')))
+            ->when(request('language'), 
+                fn ($builder) => $builder->whereJsonContains('languages->languages', request('language')))
+            ->when(request('categories'),
+                fn($builder) => $builder->whereHas(
+                    'categories',
+                    fn ($builder) => $builder->whereIn('id', request('categories'))
+                    // * To include exactly all categories in the filter
+                    // '=',
+                    // count(request('categories'))
+                )
+            )
+            ->when(request('services'),
+                fn($builder) => $builder->whereHas(
+                    'services',
+                    fn ($builder) => $builder->whereIn('id', request('services'))
+                    // * To include exactly all services in the filter
+                    // '=',
+                    // count(request('services'))
+                )
+            )
+            ->with(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
+            // ->morphWithCount(['reviews'])
+            // ->with([
+            //     'reviewable' => function (MorphTo $morphTo) {
+            //         $morphTo->morphWithCount();
+            //     }
+            // ])
+            // ->latest('id')
+            ->withAvg('reviews', 'rating')
+            ->paginate();
+
+        return HandymanResource::collection(
+            $handymen
+        );
     }
 
     /**

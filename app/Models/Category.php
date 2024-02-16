@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Models\Service;
+use App\Models\Handyman;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class ServiceCategory extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -26,5 +28,10 @@ class ServiceCategory extends Model
     public function services(): HasMany
     {
         return $this->hasMany(Service::class);
+    }
+
+    public function handymen(): BelongsToMany
+    {
+        return $this->belongsToMany(Handyman::class);
     }
 }

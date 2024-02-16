@@ -11,9 +11,9 @@ class ServiceControllerTest extends TestCase
 {
     use LazilyRefreshDatabase;
 
-    public function test_it_lists_services()
+    public function test_lists_services()
     {
-        $response = $this->get('/api/services');
+        $response = $this->getJson('/api/services');
 
         $response->assertOk();
 

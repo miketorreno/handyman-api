@@ -17,7 +17,10 @@ class SubscriptionTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'benefits' => fake()->sentence(),
+            'price' => rand(50, 1000),
+            'duration' => rand(60, 525600),   // in minutes 1hr - 1yr
         ];
     }
 }

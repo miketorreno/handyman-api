@@ -11,9 +11,9 @@ class TagControllerTest extends TestCase
 {
     use LazilyRefreshDatabase;
     
-    public function test_it_lists_tags()
+    public function test_lists_tags()
     {
-        $response = $this->get('/api/tags');
+        $response = $this->getJson('/api/tags');
 
         $response->assertOk();
 

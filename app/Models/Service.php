@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\ServiceCategory;
+use App\Models\Category;
+use App\Models\Handyman;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Service extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'service_category_id',
+        'category_id',
         'title',
         'description',
         'hidden',
@@ -24,8 +26,13 @@ class Service extends Model
         'hidden' => 'bool',
     ];
 
-    public function serviceCategory(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(ServiceCategory::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function handymen(): BelongsToMany
+    {
+        return $this->belongsToMany(Handyman::class);
     }
 }

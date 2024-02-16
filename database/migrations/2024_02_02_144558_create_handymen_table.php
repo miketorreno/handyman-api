@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->foreignId('image_id')->index()->nullable();
-            $table->foreignId('service_id')->index()->index();
-            $table->foreignId('category_id')->index()->index();
-            $table->foreignId('subscription_type_id')->index();
-            $table->string('about')->nullable();
+            $table->foreignId('subscription_type_id')->index()->nullable();
+            $table->text('about')->nullable();
             $table->json('tools')->nullable();
             $table->string('membership_level')->nullable();
             $table->string('reputation_score')->nullable();

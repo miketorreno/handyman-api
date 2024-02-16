@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\ServiceCategoryController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HandymanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,15 @@ Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
 
 
 // * Categories
-Route::get('/categories', [ServiceCategoryController::class, 'index'])->name('category.index');
+Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
 
 
 // * Services
 Route::get('/services', [ServiceController::class, 'index'])->name('service.index');
 
 
+// * Handymen
+Route::get('/handymen', [HandymanController::class, 'index'])->name('handymen.index');
 
 
 

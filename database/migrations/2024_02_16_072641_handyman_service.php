@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quotes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->index();
+        Schema::create('handyman_service', function (Blueprint $table) {
+            $table->foreignId('service_id')->index();
             $table->foreignId('handyman_id')->index();
-            $table->string('quote_details');
-            $table->string('price');
-            $table->tinyInteger('acceptance_status')->default(1);
             $table->timestamps();
-            $table->softDeletes();
+            
+            $table->unique(['service_id', 'handyman_id']);
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('quotes');
+        //
     }
 };
