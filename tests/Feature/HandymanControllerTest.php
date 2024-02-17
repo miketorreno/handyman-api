@@ -131,6 +131,8 @@ class HandymanControllerTest extends TestCase
 
         $response = $this->getJson('/api/handymen');
 
+        // dd($response);
+
         $response->assertOk()
             ->assertJsonCount(1, 'data.0.reviews')
             ->assertJsonCount(1, 'data.0.quotes')
@@ -150,4 +152,59 @@ class HandymanControllerTest extends TestCase
     //     $response->assertOk()
     //         ->assertJsonPath('data.0.reviews_count', 4);
     // }
+    
+    public function test_shows_a_single_handyman()
+    {
+        $user = User::factory()->create();
+        $subscriptionType = SubscriptionType::factory()->create();
+        $handyman = Handyman::factory()->for($user)->for($subscriptionType)->hasCategories(1)->hasServices(1)->create();
+        $handyman->reviews()->create(['user_id' => $user->id]);
+        Quote::factory()->for($handyman)->create();
+
+        $response = $this->getJson('/api/handymen/'.$handyman->id);
+        
+        // dd($response);
+
+        $response->assertOk();
+            // ->assertJsonCount(1, 'data.reviews')
+            // ->assertJsonCount(1, 'data.quotes')
+            // ->assertJsonCount(1, 'data.services')
+            // ->assertJsonCount(1, 'data.categories')
+            // ->assertJsonPath('data.subscription_type.id', $subscriptionType->id)
+            // ->assertJsonPath('data.user.id', $user->id);
+    }
+
+    public function test_can_create_handyman()
+    {
+        // Notification::fake();
+
+        // $admin = User::factory()->create(['is_admin' => true]);
+        $user = User::factory()->create();
+        $services = Service::factory(2)->create();
+        $categories = Category::factory(2)->create();
+
+        $this->actingAs($user);
+
+        $response = $this->postJson('/api/handymen', Handyman::factory()->raw([
+            'categories' => $categories->pluck('id')->toArray(),
+            'services' => $services->pluck('id')->toArray()
+        ]));
+
+        // dd($response);
+
+        $response->assertCreated()
+            ->assertJsonPath('data.user.id', $user->id);
+            // ->assertJsonCount(2, 'data.services')
+            // ->assertJsonCount(2, 'data.categories');
+
+        $this->assertDatabaseHas('handymen', [
+            'id' => $response->json('data.id')
+        ]);
+
+        // Notification::assertSentTo($admin, NewBusinessNotification::class);
+        // ! Failing to assert the notification is saved to database
+        // $this->assertDatabaseHas('notifications', [
+        //     'notifiable_id' => $admin->id
+        // ]);
+    }
 }

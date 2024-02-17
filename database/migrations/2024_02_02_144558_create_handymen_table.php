@@ -19,10 +19,10 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->json('tools')->nullable();
             $table->string('membership_level')->nullable();
-            $table->string('reputation_score')->nullable();
+            $table->integer('reputation_score')->default(0);
             $table->decimal('avg_rating', 2, 1)->default(0);
             $table->string('experience')->nullable();
-            $table->string('hire_count')->default(0);
+            $table->integer('hire_count')->default(0);
             $table->tinyInteger('group_type')->default(1);
             $table->json('group_members')->nullable();
             $table->json('certifications')->nullable();

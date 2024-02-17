@@ -37,6 +37,11 @@ Route::get('/services', [ServiceController::class, 'index'])->name('service.inde
 
 // * Handymen
 Route::get('/handymen', [HandymanController::class, 'index'])->name('handymen.index');
+Route::get('/handymen/{handymen}', [HandymanController::class, 'show'])->name('handymen.show');
+Route::post('/handymen', [HandymanController::class, 'store'])
+    ->middleware(['auth:sanctum', 'verified'])
+    ->name('handymen.store');
+Route::put('/handymen/{handymen}', [HandymanController::class, 'update'])->name('handymen.update');
 
 
 

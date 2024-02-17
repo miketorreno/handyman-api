@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreHandymanRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreHandymanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,24 @@ class StoreHandymanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'about' => ['string'],
+            'tools' => ['json'],
+            'membership_level' => ['string'],
+            'reputation_score' => ['integer'],
+            'avg_rating' => ['numeric'],
+            'experience' => ['string'],
+            'hire_count' => ['integer'],
+            'group_type' => ['integer'],
+            'group_members' => ['json'],
+            'certifications' => ['json'],
+            'languages' => ['json'],
+            'approval_status' => ['integer'],
+
+            'categories' => ['array'],
+            'categories.*' => ['integer', Rule::exists('categories', 'id')],
+
+            'services' => ['array'],
+            'services.*' => ['integer', Rule::exists('services', 'id')],
         ];
     }
 }

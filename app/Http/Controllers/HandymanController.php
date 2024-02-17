@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Handyman;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\HandymanResource;
 use App\Http\Requests\StoreHandymanRequest;
 use App\Http\Requests\UpdateHandymanRequest;
@@ -67,7 +70,32 @@ class HandymanController extends Controller
      */
     public function store(StoreHandymanRequest $request)
     {
-        //
+        $handyman = new Handyman();
+        $attributes['user_id'] = auth()->id();
+
+        $handyman = DB::transaction(function () use ($handyman, $attributes) {
+            $handyman->fill(
+                Arr::except($attributes, ['categories', 'services'])
+            )->save();
+
+            if (isset($attributes['categories'])) {
+                $handyman->categories()->attach($attributes['categories']);
+            }
+
+            if (isset($attributes['services'])) {
+                $handyman->services()->attach($attributes['services']);
+            }
+
+            return $handyman;
+        });
+
+        // * DB Notification
+        // Notification::send(User::where('is_admin', true)->get(), new NewBusinessNotification($business, auth()->user()));
+
+
+        return HandymanResource::make(
+            $handyman->load(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
+        );
     }
 
     /**
@@ -75,7 +103,9 @@ class HandymanController extends Controller
      */
     public function show(Handyman $handyman)
     {
-        //
+        return HandymanResource::make(
+            $handyman->load(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
+        );
     }
 
     /**
@@ -91,7 +121,35 @@ class HandymanController extends Controller
      */
     public function update(UpdateHandymanRequest $request, Handyman $handyman)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('handyman.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $handyman);
+
+        $attributes = $request->validated();
+        $handyman->fill(Arr::except($attributes, ['categories', 'services']));
+        // $requiresReview = $handyman->isDirty(['tools']);
+
+        DB::transaction(function () use ($handyman, $attributes) {
+            $handyman->save();
+
+            if (isset($attributes['categories'])) {
+                $handyman->categories()->sync($attributes['categories']);
+            }
+
+            if (isset($attributes['services'])) {
+                $handyman->services()->sync($attributes['services']);
+            }
+        });
+
+        // * DB Notification
+        // if ($requiresReview) {
+        //     Notification::send(User::where('is_admin', true)->get(), new UpdateBusinessNotification($handyman, auth()->user()));
+        // }
+        
+        return HandymanResource::make(
+            $handyman->load(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
+        );
     }
 
     /**
