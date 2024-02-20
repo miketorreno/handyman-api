@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Handyman;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Response;
+use App\Models\SubscriptionType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\HandymanResource;
 use App\Http\Requests\StoreHandymanRequest;
@@ -90,7 +91,7 @@ class HandymanController extends Controller
         });
 
         // * DB Notification
-        // Notification::send(User::where('is_admin', true)->get(), new NewBusinessNotification($business, auth()->user()));
+        // Notification::send(User::where('is_admin', true)->get(), new NewHandymanNotification($handyman, auth()->user()));
 
 
         return HandymanResource::make(
@@ -145,7 +146,7 @@ class HandymanController extends Controller
 
         // * DB Notification
         // if ($requiresReview) {
-        //     Notification::send(User::where('is_admin', true)->get(), new UpdateBusinessNotification($handyman, auth()->user()));
+        //     Notification::send(User::where('is_admin', true)->get(), new UpdateHandymanNotification($handyman, auth()->user()));
         // }
         
         return HandymanResource::make(
@@ -166,5 +167,33 @@ class HandymanController extends Controller
         $handyman->delete();
 
         // Notification::send(User::where('is_admin', true)->get(), new DeleteHandymanNotification($handyman, auth()->user()));
+    }
+
+    public function subscribe(Handyman $handyman, SubscriptionType $subscriptionType)
+    {
+        abort_unless(auth()->user()->tokenCan('handyman.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        // $this->authorize('update', $handyman);
+
+        $handyman->update(['subscription_type_id' => $subscriptionType->id]);
+
+        return HandymanResource::make(
+            $handyman->load(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
+        );
+    }
+
+    public function unsubscribe(Handyman $handyman)
+    {
+        abort_unless(auth()->user()->tokenCan('handyman.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        // $this->authorize('update', $handyman);
+        
+        $handyman->update(['subscription_type_id' => null]);
+
+        return HandymanResource::make(
+            $handyman->load(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
+        );
     }
 }

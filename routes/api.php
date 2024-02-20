@@ -6,6 +6,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HandymanController;
+use App\Http\Controllers\SubscriptionTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +36,23 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('category.
 Route::get('/services', [ServiceController::class, 'index'])->name('service.index');
 
 
+// * Subscriptions
+Route::get('/subscriptions', [SubscriptionTypeController::class, 'index'])->name('subscription.index');
+
+
 // * Handymen
-Route::get('/handymen', [HandymanController::class, 'index'])->name('handymen.index');
-Route::get('/handymen/{handymen}', [HandymanController::class, 'show'])->name('handymen.show');
+Route::get('/handymen', [HandymanController::class, 'index'])->name('handyman.index');
+Route::get('/handymen/{handymen}', [HandymanController::class, 'show'])->name('handyman.show');
 Route::post('/handymen', [HandymanController::class, 'store'])
     ->middleware(['auth:sanctum', 'verified'])
-    ->name('handymen.store');
-Route::put('/handymen/{handymen}', [HandymanController::class, 'update'])->name('handymen.update');
-Route::delete('/handymen/{handymen}', [HandymanController::class, 'destroy'])->name('business.destroy');
+    ->name('handyman.store');
+Route::put('/handymen/{handymen}', [HandymanController::class, 'update'])->name('handyman.update');
+Route::delete('/handymen/{handymen}', [HandymanController::class, 'destroy'])->name('handyman.destroy');
+
+Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanController::class, 'subscribe'])->name('handyman.subscribe');
+Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])->name('handyman.unsubscribe');
+
+
 
 
 

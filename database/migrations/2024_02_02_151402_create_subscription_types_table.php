@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\SubscriptionType;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,6 +20,25 @@ return new class extends Migration
             $table->string('duration');
             $table->timestamps();
         });
+
+        SubscriptionType::create([
+            'name' => 'Free',
+            'benefits' => fake()->sentence(),
+            'price' => rand(50, 1000),
+            'duration' => rand(60, 525600),
+        ]);
+        SubscriptionType::create([
+            'name' => 'Featured',
+            'benefits' => fake()->sentence(),
+            'price' => rand(50, 1000),
+            'duration' => rand(60, 525600),
+        ]);
+        SubscriptionType::create([
+            'name' => 'Premium',
+            'benefits' => fake()->sentence(),
+            'price' => rand(50, 1000),
+            'duration' => rand(60, 525600),
+        ]);
     }
 
     /**

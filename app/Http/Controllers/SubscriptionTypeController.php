@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SubscriptionType;
+use App\Http\Resources\SubscriptionTypeResource;
 use App\Http\Requests\StoreSubscriptionTypeRequest;
 use App\Http\Requests\UpdateSubscriptionTypeRequest;
-use App\Models\SubscriptionType;
 
 class SubscriptionTypeController extends Controller
 {
@@ -13,7 +14,9 @@ class SubscriptionTypeController extends Controller
      */
     public function index()
     {
-        //
+        return SubscriptionTypeResource::collection(
+            SubscriptionType::all()
+        );
     }
 
     /**

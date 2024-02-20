@@ -336,4 +336,60 @@ class HandymanControllerTest extends TestCase
 
         $response->assertForbidden();
     }
+
+    public function test_handyman_can_subscribe()
+    {
+        $subscriptions = SubscriptionType::all();
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->for($user)->create();
+
+        // $this->actingAs($user, ['handyman.update']);
+        Sanctum::actingAs($user, ['handyman.update']);
+        
+        $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions/'.$subscriptions[2]->id);
+        
+        $response->assertOk();
+    }
+
+    public function test_can_not_subscribe_if_handyman_does_not_belong_to_user()
+    {
+        // $this->withoutExceptionHandling();
+        $subscriptions = SubscriptionType::all();
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $handyman = Handyman::factory()->for($anotherUser)->create();
+
+        $this->actingAs($user);
+
+        $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions/'.$subscriptions[2]->id);
+
+        $response->assertForbidden();
+    }
+
+    public function test_handyman_can_unsubscribe()
+    {
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->for($user)->create();
+
+        // $this->actingAs($user, ['handyman.update']);
+        Sanctum::actingAs($user, ['handyman.update']);
+        
+        $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions');
+
+        $response->assertOk();
+    }
+    
+    // public function test_can_not_unsubscribe_if_handyman_does_not_belong_to_user()
+    // {
+    //     // $this->withoutExceptionHandling();
+    //     $user = User::factory()->create();
+    //     $anotherUser = User::factory()->create();
+    //     $handyman = Handyman::factory()->for($anotherUser)->create();
+
+    //     $this->actingAs($user);
+
+    //     $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions');
+
+    //     $response->assertForbidden();
+    // }
 }
