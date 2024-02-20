@@ -42,6 +42,7 @@ Route::post('/handymen', [HandymanController::class, 'store'])
     ->middleware(['auth:sanctum', 'verified'])
     ->name('handymen.store');
 Route::put('/handymen/{handymen}', [HandymanController::class, 'update'])->name('handymen.update');
+Route::delete('/handymen/{handymen}', [HandymanController::class, 'destroy'])->name('business.destroy');
 
 
 

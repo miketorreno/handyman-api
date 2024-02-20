@@ -37,7 +37,7 @@ class HandymanPolicy
      */
     public function update(User $user, Handyman $handyman): bool
     {
-        //
+        return ($user->id == $handyman->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
     }
 
     /**

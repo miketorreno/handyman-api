@@ -124,11 +124,12 @@ class HandymanController extends Controller
         abort_unless(auth()->user()->tokenCan('handyman.update'),
             Response::HTTP_FORBIDDEN
         );
-        $this->authorize('update', $handyman);
+        // $this->authorize('update', $handyman);
 
         $attributes = $request->validated();
+        $attributes['user_id'] = auth()->id();
         $handyman->fill(Arr::except($attributes, ['categories', 'services']));
-        // $requiresReview = $handyman->isDirty(['tools']);
+        // $requiresReview = $handyman->isDirty(['about', 'tools']);
 
         DB::transaction(function () use ($handyman, $attributes) {
             $handyman->save();
@@ -157,6 +158,13 @@ class HandymanController extends Controller
      */
     public function destroy(Handyman $handyman)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('handyman.delete'),
+            Response::HTTP_FORBIDDEN
+        );
+        // $this->authorize('delete', $handyman);
+
+        $handyman->delete();
+
+        // Notification::send(User::where('is_admin', true)->get(), new DeleteHandymanNotification($handyman, auth()->user()));
     }
 }

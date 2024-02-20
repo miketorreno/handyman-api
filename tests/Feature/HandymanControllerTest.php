@@ -9,6 +9,7 @@ use App\Models\Review;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\Handyman;
+use Laravel\Sanctum\Sanctum;
 use App\Models\SubscriptionType;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -147,7 +148,7 @@ class HandymanControllerTest extends TestCase
     //     $handyman = Handyman::factory()->create();
     //     Review::factory(4)->for($handyman)->create();
 
-    //     $response = $this->getJson('/api/handyman');
+    //     $response = $this->getJson('/api/handymen');
 
     //     $response->assertOk()
     //         ->assertJsonPath('data.0.reviews_count', 4);
@@ -155,6 +156,7 @@ class HandymanControllerTest extends TestCase
     
     public function test_shows_a_single_handyman()
     {
+        // $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $subscriptionType = SubscriptionType::factory()->create();
         $handyman = Handyman::factory()->for($user)->for($subscriptionType)->hasCategories(1)->hasServices(1)->create();
@@ -176,6 +178,7 @@ class HandymanControllerTest extends TestCase
 
     public function test_can_create_handyman()
     {
+        // $this->withoutExceptionHandling();
         // Notification::fake();
 
         // $admin = User::factory()->create(['is_admin' => true]);
@@ -201,10 +204,136 @@ class HandymanControllerTest extends TestCase
             'id' => $response->json('data.id')
         ]);
 
-        // Notification::assertSentTo($admin, NewBusinessNotification::class);
+        // Notification::assertSentTo($admin, NewHandymanNotification::class);
         // ! Failing to assert the notification is saved to database
         // $this->assertDatabaseHas('notifications', [
         //     'notifiable_id' => $admin->id
         // ]);
+    }
+    
+    public function test_can_update_handyman()
+    {
+        // $this->withoutExceptionHandling();
+        // Notification::fake();
+        
+        // $admin = User::factory()->create(['is_admin' => true]);
+        $user = User::factory()->create();
+        $categories = Category::factory(3)->create();
+        $anotherCategory = Category::factory()->create();
+        $services = Service::factory(3)->create();
+        $anotherService = Service::factory()->create();
+        $handyman = Handyman::factory()->for($user)->create();
+        
+        $handyman->services()->attach($services);
+        $handyman->categories()->attach($categories);
+
+        // $this->actingAs($user);
+        // $this->actingAs($user, ['handyman.update']);
+        Sanctum::actingAs($user, ['handyman.update']);
+
+        $response = $this->putJson('/api/handymen/'.$handyman->id, [
+            'about' => 'Updated Handyman',
+            'services' => [$services[0]->id, $anotherService->id],
+            'categories' => [$categories[0]->id, $anotherCategory->id]
+        ]);
+
+        // dd($response);
+
+        // $response->assertOk()
+        $response->assertStatus(201);
+            // ->assertJsonCount(2, 'data.categories')
+            // ->assertJsonCount(2, 'data.services')
+            // ->assertJsonPath('data.categories.0.id', $categories[0]->id)
+            // ->assertJsonPath('data.categories.1.id', $anotherCategory->id)
+            // ->assertJsonPath('data.services.0.id', $services[0]->id)
+            // ->assertJsonPath('data.services.1.id', $anotherService->id)
+            // ->assertJsonPath('data.about', 'Updated Handyman');
+        
+        // Notification::assertSentTo($admin, UpdateHandymanNotification::class);
+        // ! Failing to assert the notification is saved to database
+        // $this->assertDatabaseHas('notifications', [
+        //     'notifiable_id' => $admin->id
+        // ]);
+    }
+    
+    public function test_can_not_update_handyman_that_does_not_belong_to_user()
+    {
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $handyman = Handyman::factory()->for($anotherUser)->create();
+
+        $this->actingAs($user);
+
+        $response = $this->putJson('/api/handymen/'.$handyman->id, [
+            'about' => 'Cool Handyman'
+        ]);
+
+        $response->assertForbidden();
+    }
+
+    public function test_does_not_allow_updating_if_scope_is_not_provided()
+    {
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->create();
+
+        $this->actingAs($user, []);
+
+        $response = $this->putJson('/api/handymen/'.$handyman->id);
+
+        $response->assertForbidden();
+    }
+    
+    public function test_can_delete_handyman()
+    {
+        // $this->withoutExceptionHandling();
+        // Notification::fake();
+        
+        // $admin = User::factory()->create(['is_admin' => true]);
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->for($user)->create();
+
+        // $image = $handyman->images()->create(Image::factory()->raw([
+        //     'url' => 'handyman_image.jpg'
+        // ]));
+
+        // $this->actingAs($user);
+        Sanctum::actingAs($user, ['handyman.delete']);
+
+        $response = $this->deleteJson('/api/handymen/'.$handyman->id);
+
+        $response->assertOk();
+
+        // $this->assertSoftDeleted($handyman);
+
+        // Notification::assertSentTo($admin, DeleteHandymanNotification::class);
+        // ! Failing to assert the notification is saved to database
+        // $this->assertDatabaseHas('notifications', [
+        //     'notifiable_id' => $admin->id
+        // ]);
+    }
+    
+    public function test_can_not_delete_handyman_that_does_not_belong_to_user()
+    {
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $handyman = Handyman::factory()->for($anotherUser)->create();
+
+        $this->actingAs($user);
+
+        $response = $this->deleteJson('/api/handymen/'.$handyman->id);
+
+        $response->assertForbidden();
+    }
+
+    public function test_does_not_allow_deleting_if_scope_is_not_provided()
+    {
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->create();
+
+        $this->actingAs($user, []);
+
+        $response = $this->deleteJson('/api/handymen/'.$handyman->id);
+
+        $response->assertForbidden();
     }
 }
