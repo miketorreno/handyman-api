@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('review')->nullable();
             $table->foreignId('image_id')->nullable();
             $table->boolean('edited')->default(false);
+            $table->boolean('requested')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -19,11 +19,13 @@ class Review extends Model
         'review',
         'image_id',
         'edited',
+        'requested',
     ];
 
     protected $casts = [
         'rating' => 'integer',
         'edited' => 'bool',
+        'requested' => 'bool',
     ];
     
     public function user(): BelongsTo

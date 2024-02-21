@@ -239,8 +239,7 @@ class HandymanControllerTest extends TestCase
 
         // dd($response);
 
-        // $response->assertOk()
-        $response->assertStatus(201);
+        $response->assertOk();
             // ->assertJsonCount(2, 'data.categories')
             // ->assertJsonCount(2, 'data.services')
             // ->assertJsonPath('data.categories.0.id', $categories[0]->id)

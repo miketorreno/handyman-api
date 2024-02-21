@@ -11,9 +11,14 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Handyman $handyman)
     {
-        //
+        $reviews = $handyman->reviews();
+        dd($reviews);
+
+        return ReviewResource::collection(
+            $reviews
+        );
     }
 
     /**

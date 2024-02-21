@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HandymanController;
@@ -41,19 +42,21 @@ Route::get('/subscriptions', [SubscriptionTypeController::class, 'index'])->name
 
 
 // * Handymen
-Route::get('/handymen', [HandymanController::class, 'index'])->name('handyman.index');
-Route::get('/handymen/{handymen}', [HandymanController::class, 'show'])->name('handyman.show');
+Route::get('/handymen', [HandymanController::class, 'index'])->name('handymen.index');
+Route::get('/handymen/{handyman}', [HandymanController::class, 'show'])->name('handymen.show');
 Route::post('/handymen', [HandymanController::class, 'store'])
     ->middleware(['auth:sanctum', 'verified'])
-    ->name('handyman.store');
-Route::put('/handymen/{handymen}', [HandymanController::class, 'update'])->name('handyman.update');
-Route::delete('/handymen/{handymen}', [HandymanController::class, 'destroy'])->name('handyman.destroy');
+    ->name('handymen.store');
+Route::put('/handymen/{handyman}', [HandymanController::class, 'update'])->name('handymen.update');
+Route::delete('/handymen/{handyman}', [HandymanController::class, 'destroy'])->name('handymen.destroy');
 
-Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanController::class, 'subscribe'])->name('handyman.subscribe');
-Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])->name('handyman.unsubscribe');
+Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanController::class, 'subscribe'])->name('handymen.subscribe');
+Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])->name('handymen.unsubscribe');
 
 
 
+// * Reviews
+Route::get('/handymen/{handyman}/reviews', [ReviewController::class, 'index'])->name('handymen.reviews.index');
 
 
 
