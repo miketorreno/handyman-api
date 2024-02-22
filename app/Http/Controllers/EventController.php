@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use Illuminate\Http\Response;
+use App\Http\Resources\EventResource;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
-use App\Models\Event;
 
 class EventController extends Controller
 {
@@ -13,7 +15,16 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::query()
+            ->when(request('user'),
+                fn($query) => $query->where('user_id', request('user'))
+            )
+            ->with(['user'])
+            ->paginate();
+
+        return EventResource::collection(
+            $events
+        );
     }
 
     /**
@@ -29,7 +40,13 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $event = Event::create(array_merge([
+            'user_id' => auth()->id()
+        ], $request->validated()));
+
+        return EventResource::make(
+            $event->load(['user'])
+        );
     }
 
     /**
@@ -37,7 +54,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return EventResource::make(
+            $event->load(['user'])
+        );
     }
 
     /**
@@ -53,7 +72,18 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('event.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $event);
+
+        $event->update([
+            $request->validated()
+        ]);
+
+        return EventResource::make(
+            $event->load(['user'])
+        );
     }
 
     /**
@@ -61,6 +91,11 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('event.delete'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('delete', $event);
+
+        $event->delete();
     }
 }

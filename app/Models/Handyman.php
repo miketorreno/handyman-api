@@ -56,6 +56,7 @@ class Handyman extends User
         'approval_status' => 'integer',
         'tools' => 'array',
         'languages' => 'array',
+        'banned_at' => 'datetime',
     ];
     
     public function user(): BelongsTo
