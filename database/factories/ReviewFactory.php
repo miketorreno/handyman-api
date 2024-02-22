@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Handyman;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +19,13 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
+            'handyman_id' => Handyman::factory(),
             'user_id' => User::factory(),
             'rating' => rand(1, 5),
-            'review' => fake()->sentence(),
+            'review' => fake()->paragraph(),
+            'image_id' => null,
+            'edited' => false,
+            'requested' => false,
         ];
     }
 }

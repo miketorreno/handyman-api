@@ -79,9 +79,9 @@ class Handyman extends User
         return $this->hasMany(Quote::class);
     }
 
-    public function reviews(): MorphMany
+    public function reviews(): HasMany
     {
-        return $this->morphMany(Review::class, 'reviewable');
+        return $this->hasMany(Review::class);
     }
 
     public function subscriptionType(): BelongsTo

@@ -55,10 +55,15 @@ Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanCo
 Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])->name('handymen.unsubscribe');
 
 
-
 // * Reviews
-Route::get('/handymen/{handyman}/reviews', [ReviewController::class, 'index'])->name('handymen.reviews.index');
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('review.show');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store');
+Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('review.update');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
 
+// Route::get('/handymen/{handyman}/reviews', [ReviewController::class, 'index'])->name('handymen.reviews.index');
+// Route::post('/handymen/{handyman}/reviews', [ReviewController::class, 'store'])->name('handymen.reviews.store');
 
 
 // * Events

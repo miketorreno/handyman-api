@@ -2,8 +2,9 @@
 
 namespace App\Policies;
 
-use App\Models\Review;
 use App\Models\User;
+use App\Models\Review;
+use App\Models\Handyman;
 use Illuminate\Auth\Access\Response;
 
 class ReviewPolicy
@@ -37,7 +38,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review): bool
     {
-        //
+        return ($user->id == $review->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +46,7 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review): bool
     {
-        //
+        return ($user->id == $review->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
     }
 
     /**

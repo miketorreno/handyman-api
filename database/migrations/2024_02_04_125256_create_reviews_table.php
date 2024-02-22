@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('handyman_id');
             $table->foreignId('user_id');
-            $table->morphs('reviewable');
-            $table->tinyInteger('rating')->nullable();
+            $table->unsignedTinyInteger('rating')->nullable();
             $table->text('review')->nullable();
             $table->foreignId('image_id')->nullable();
             $table->boolean('edited')->default(false);

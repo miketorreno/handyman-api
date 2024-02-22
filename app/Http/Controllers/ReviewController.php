@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
+use App\Models\Handyman;
+use Illuminate\Http\Response;
+use App\Http\Resources\ReviewResource;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
-use App\Models\Review;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReviewController extends Controller
 {
@@ -13,12 +18,17 @@ class ReviewController extends Controller
      */
     public function index(Handyman $handyman)
     {
-        $reviews = $handyman->reviews();
-        dd($reviews);
+        $reviews = Review::query()
+            ->when(request('handyman'),
+                fn($query) => $query->where('handyman_id', request('handyman'))
+            )
+            ->when(request('user'),
+                fn($query) => $query->where('user_id', request('user'))
+            )
+            ->with(['user', 'handyman'])
+            ->paginate();
 
-        return ReviewResource::collection(
-            $reviews
-        );
+        return ReviewResource::collection($reviews);
     }
 
     /**
@@ -34,7 +44,29 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $attributes = $request->validated();
+
+        try {
+            $handyman = Handyman::findOrFail($attributes['handyman_id']);
+        } catch (ModelNotFoundException $e) {
+            throw ValidationException::withMessages([
+                'handyman' => 'Handyman does not exist'
+            ]);
+        }
+
+        if (!isset($attributes['rating']) && !isset($attributes['review'])) {
+            throw ValidationException::withMessages([
+                'review' => 'Write a review and/or rate the handyman'
+            ]);
+        }
+
+        $review = auth()->user()->reviews()->create([
+            'handyman_id' => $attributes['handyman_id'],
+            'rating' => (isset($attributes['rating'])) ? $attributes['rating'] : null,
+            'review' => (isset($attributes['review'])) ? $attributes['review'] : null,
+        ]);
+
+        return ReviewResource::make($review->load(['user', 'handyman']));
     }
 
     /**
@@ -42,7 +74,9 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
+        $review->load(['user', 'handyman']);
+
+        return ReviewResource::make($review);
     }
 
     /**
@@ -58,7 +92,20 @@ class ReviewController extends Controller
      */
     public function update(UpdateReviewRequest $request, Review $review)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('review.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $review);
+        
+        $attributes = $request->validated();
+
+        $review->fill($attributes);
+        if ($review->isDirty(['rating', 'review'])) {
+            $review->edited = true;
+            $review->save();
+        }
+
+        return ReviewResource::make($review->load(['user', 'handyman']));
     }
 
     /**
@@ -66,6 +113,11 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('review.delete'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('delete', $review);
+
+        $review->delete();
     }
 }
