@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HandymanController;
+use App\Http\Controllers\YardSaleController;
 use App\Http\Controllers\SubscriptionTypeController;
 
 /*
@@ -54,28 +55,36 @@ Route::delete('/handymen/{handyman}', [HandymanController::class, 'destroy'])->n
 Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanController::class, 'subscribe'])->name('handymen.subscribe');
 Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])->name('handymen.unsubscribe');
 
+// Route::get('/handymen/{handyman}/reviews', [ReviewController::class, 'index'])->name('handymen.reviews.index');
+// Route::post('/handymen/{handyman}/reviews', [ReviewController::class, 'store'])->name('handymen.reviews.store');
+
 
 // * Reviews
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
-Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('review.show');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store');
-Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('review.update');
-Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
-
-// Route::get('/handymen/{handyman}/reviews', [ReviewController::class, 'index'])->name('handymen.reviews.index');
-// Route::post('/handymen/{handyman}/reviews', [ReviewController::class, 'store'])->name('handymen.reviews.store');
+Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 
 // * Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::post('/events', [EventController::class, 'store'])
-    ->middleware(['auth:sanctum', 'verified'])
+    ->middleware(['auth:sanctum'])
     ->name('events.store');
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
 
+// * Yard Sales
+Route::get('/yardsales', [YardSaleController::class, 'index'])->name('yardsales.index');
+Route::get('/yardsales/{yardsale}', [YardSaleController::class, 'show'])->name('yardsales.show');
+Route::post('/yardsales', [YardSaleController::class, 'store'])
+    ->middleware(['auth:sanctum'])
+    ->name('yardsales.store');
+Route::put('/yardsales/{yardsale}', [YardSaleController::class, 'update'])->name('yardsales.update');
+Route::delete('/yardsales/{yardsale}', [YardSaleController::class, 'destroy'])->name('yardsales.destroy');
 
 
 

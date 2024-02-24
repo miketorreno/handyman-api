@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\YardSale;
+use Illuminate\Http\Response;
+use App\Http\Resources\YardSaleResource;
 use App\Http\Requests\StoreYardSaleRequest;
 use App\Http\Requests\UpdateYardSaleRequest;
-use App\Models\YardSale;
 
 class YardSaleController extends Controller
 {
@@ -13,7 +15,14 @@ class YardSaleController extends Controller
      */
     public function index()
     {
-        //
+        $yardSales = YardSale::query()
+            ->when(request('user'),
+                fn($query) => $query->where('user_id', request('user'))
+            )
+            ->with(['user'])
+            ->paginate();
+
+        return YardSaleResource::collection($yardSales);
     }
 
     /**
@@ -29,7 +38,13 @@ class YardSaleController extends Controller
      */
     public function store(StoreYardSaleRequest $request)
     {
-        //
+        $yardSale = YardSale::create(array_merge([
+            'user_id' => auth()->id()
+        ], $request->validated()));
+
+        return YardSaleResource::make(
+            $yardSale->load(['user'])
+        );
     }
 
     /**
@@ -37,7 +52,9 @@ class YardSaleController extends Controller
      */
     public function show(YardSale $yardSale)
     {
-        //
+        $yardSale->load(['user']);
+
+        return YardSaleResource::make($yardSale);
     }
 
     /**
@@ -53,7 +70,16 @@ class YardSaleController extends Controller
      */
     public function update(UpdateYardSaleRequest $request, YardSale $yardSale)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('yardsale.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        // $this->authorize('update', $yardSale);
+        
+        $yardSale->update([
+            $request->validated()
+        ]);
+
+        return YardSaleResource::make($yardSale->load(['user']));
     }
 
     /**
@@ -61,6 +87,11 @@ class YardSaleController extends Controller
      */
     public function destroy(YardSale $yardSale)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('yardsale.delete'),
+            Response::HTTP_FORBIDDEN
+        );
+        // $this->authorize('delete', $yardSale);
+
+        $yardSale->delete();
     }
 }

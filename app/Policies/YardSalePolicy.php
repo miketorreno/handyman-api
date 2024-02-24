@@ -37,7 +37,7 @@ class YardSalePolicy
      */
     public function update(User $user, YardSale $yardSale): bool
     {
-        //
+        return ($user->id == $yardSale->user_id) || ($user->role == User::ROLE_ADMIN) || ($user->role == User::ROLE_SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +45,7 @@ class YardSalePolicy
      */
     public function delete(User $user, YardSale $yardSale): bool
     {
-        //
+        return ($user->id == $yardSale->user_id) || ($user->role == User::ROLE_ADMIN) || ($user->role == User::ROLE_SUPER_ADMIN);
     }
 
     /**

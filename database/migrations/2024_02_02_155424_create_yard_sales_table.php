@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('location');
             $table->date('date');
             $table->json('items')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

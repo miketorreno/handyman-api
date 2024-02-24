@@ -1,3 +1,3 @@
-# About the project
+# Handyman API
 
-Handyman API
+## About the project
