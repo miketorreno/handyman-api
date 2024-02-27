@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->foreignId('handyman_id')->index();
-            $table->string('quote_details');
-            $table->string('price');
+            $table->text('quote_details');
+            $table->integer('price');
             $table->tinyInteger('acceptance_status')->default(1);
             $table->timestamps();
             $table->softDeletes();

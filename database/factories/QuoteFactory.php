@@ -23,8 +23,8 @@ class QuoteFactory extends Factory
             'user_id' => User::factory(),
             'handyman_id' => Handyman::factory(),
             'quote_details' => fake()->sentence(),
-            'price' => rand(11,999999),
-            'acceptance_status' => Quote::ACCEPTANCE_ACCEPTED,
+            'price' => rand(11, 999999),
+            'acceptance_status' => Quote::ACCEPTED,
         ];
     }
 }

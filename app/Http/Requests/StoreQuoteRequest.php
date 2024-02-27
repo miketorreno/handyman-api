@@ -11,7 +11,7 @@ class StoreQuoteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['integer'],
+            'handyman_id' => ['integer'],
+            'quote_details' => ['string'],
+            'price' => ['integer'],
+            'acceptance_status' => ['integer'],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Handyman;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,9 +13,9 @@ class Quote extends Model
 {
     use HasFactory, SoftDeletes;
 
-    const ACCEPTANCE_PENDING = 1;
-    const ACCEPTANCE_ACCEPTED = 2;
-    const ACCEPTANCE_REJECTED = 3;
+    const PENDING = 1;
+    const ACCEPTED = 2;
+    const REJECTED = 3;
 
     protected $fillable = [
         'user_id',
@@ -25,8 +26,14 @@ class Quote extends Model
     ];
 
     protected $casts = [
+        'price' => 'integer',
         'acceptance_status' => 'integer',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function handyman(): BelongsTo
     {

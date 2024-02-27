@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quote;
+use Illuminate\Http\Response;
+use App\Http\Resources\QuoteResource;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Requests\UpdateQuoteRequest;
-use App\Models\Quote;
+
+/**
+ * @group Quotes
+ *
+ * APIs for managing Quotes
+ */
 
 class QuoteController extends Controller
 {
@@ -13,7 +21,12 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        //
+        $quotes = Quote::query()
+            ->paginate();
+
+        return QuoteResource::collection(
+            $quotes
+        );
     }
 
     /**
@@ -29,7 +42,13 @@ class QuoteController extends Controller
      */
     public function store(StoreQuoteRequest $request)
     {
-        //
+        $quote = Quote::create(
+            $request->validated()
+        );
+
+        return QuoteResource::make(
+            $quote->load(['user', 'handyman'])
+        );
     }
 
     /**
@@ -37,7 +56,9 @@ class QuoteController extends Controller
      */
     public function show(Quote $quote)
     {
-        //
+        return QuoteResource::make(
+            $quote->load(['user', 'handyman'])
+        );
     }
 
     /**
@@ -53,7 +74,18 @@ class QuoteController extends Controller
      */
     public function update(UpdateQuoteRequest $request, Quote $quote)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('quote.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $quote);
+
+        $quote->update(
+            $request->validated()
+        );
+
+        return QuoteResource::make(
+            $quote->load(['user', 'handyman'])
+        );
     }
 
     /**
@@ -61,6 +93,11 @@ class QuoteController extends Controller
      */
     public function destroy(Quote $quote)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('quote.delete'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('delete', $quote);
+
+        $quote->delete();
     }
 }
