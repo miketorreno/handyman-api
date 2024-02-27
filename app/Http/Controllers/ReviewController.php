@@ -11,6 +11,12 @@ use App\Http\Requests\UpdateReviewRequest;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+/**
+ * @group Reviews
+ *
+ * APIs for managing Reviews
+ */
+
 class ReviewController extends Controller
 {
     /**

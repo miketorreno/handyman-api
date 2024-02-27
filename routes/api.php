@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
@@ -96,3 +97,13 @@ Route::post('/reports', [ReportController::class, 'store'])
     ->name('reports.store');
 Route::put('/reports/{report}', [ReportController::class, 'update'])->name('reports.update');
 Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('reports.destroy');
+
+
+// * Quotes
+Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes.index');
+Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.show');
+Route::post('/quotes', [QuoteController::class, 'store'])
+    ->middleware(['auth:sanctum'])
+    ->name('quotes.store');
+Route::put('/quotes/{quote}', [QuoteController::class, 'update'])->name('quotes.update');
+Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');

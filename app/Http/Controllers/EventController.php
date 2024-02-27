@@ -8,6 +8,12 @@ use App\Http\Resources\EventResource;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 
+/**
+ * @group Events
+ *
+ * APIs for managing Events
+ */
+
 class EventController extends Controller
 {
     /**

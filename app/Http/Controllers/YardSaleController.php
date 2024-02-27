@@ -8,6 +8,12 @@ use App\Http\Resources\YardSaleResource;
 use App\Http\Requests\StoreYardSaleRequest;
 use App\Http\Requests\UpdateYardSaleRequest;
 
+/**
+ * @group Yard sales
+ *
+ * APIs for managing Yard sales
+ */
+
 class YardSaleController extends Controller
 {
     /**

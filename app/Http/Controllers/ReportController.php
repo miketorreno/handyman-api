@@ -8,6 +8,12 @@ use App\Http\Resources\ReportResource;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 
+/**
+ * @group Reports
+ *
+ * APIs for managing Reports
+ */
+
 class ReportController extends Controller
 {
     /**

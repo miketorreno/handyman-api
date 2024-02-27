@@ -7,6 +7,12 @@ use App\Http\Resources\TagResource;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 
+/**
+ * @group Tags
+ *
+ * APIs for managing Tags
+ */
+
 class TagController extends Controller
 {
     /**

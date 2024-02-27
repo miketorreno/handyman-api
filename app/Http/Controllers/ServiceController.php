@@ -7,6 +7,12 @@ use App\Http\Resources\ServiceResource;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 
+/**
+ * @group Services
+ *
+ * APIs for managing Services
+ */
+
 class ServiceController extends Controller
 {
     /**

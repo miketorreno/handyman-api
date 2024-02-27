@@ -7,6 +7,12 @@ use App\Http\Resources\SubscriptionTypeResource;
 use App\Http\Requests\StoreSubscriptionTypeRequest;
 use App\Http\Requests\UpdateSubscriptionTypeRequest;
 
+/**
+ * @group Subscription types
+ *
+ * APIs for managing Subscription types
+ */
+
 class SubscriptionTypeController extends Controller
 {
     /**

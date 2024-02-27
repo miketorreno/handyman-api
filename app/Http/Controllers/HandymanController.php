@@ -11,6 +11,12 @@ use App\Http\Resources\HandymanResource;
 use App\Http\Requests\StoreHandymanRequest;
 use App\Http\Requests\UpdateHandymanRequest;
 
+/**
+ * @group Handymen
+ *
+ * APIs for managing Handymen
+ */
+
 class HandymanController extends Controller
 {
     /**
