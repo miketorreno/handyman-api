@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Event;
+use App\Models\Report;
 use App\Models\Review;
 use App\Models\Handyman;
 use Laravel\Sanctum\HasApiTokens;
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Report::class);
     }
 }

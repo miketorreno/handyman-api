@@ -37,7 +37,7 @@ class ReportPolicy
      */
     public function update(User $user, Report $report): bool
     {
-        //
+        return ($user->id == $report->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +45,7 @@ class ReportPolicy
      */
     public function delete(User $user, Report $report): bool
     {
-        //
+        return ($user->id == $report->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
     }
 
     /**

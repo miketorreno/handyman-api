@@ -88,4 +88,9 @@ class Handyman extends User
     {
         return $this->belongsTo(SubscriptionType::class);
     }
+
+    // public function reports(): MorphMany
+    // {
+    //     return $this->morphMany(Reports::class, 'reportable');
+    // }
 }

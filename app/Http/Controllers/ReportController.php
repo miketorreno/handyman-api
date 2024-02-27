@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Report;
+use Illuminate\Http\Response;
+use App\Http\Resources\ReportResource;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
-use App\Models\Report;
 
 class ReportController extends Controller
 {
@@ -13,7 +15,12 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::query()
+            ->paginate();
+
+        return ReportResource::collection(
+            $reports
+        );
     }
 
     /**
@@ -29,7 +36,13 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        //
+        $report = Report::create(
+            $request->validated()
+        );
+
+        return ReportResource::make(
+            $report->load(['user'])
+        );
     }
 
     /**
@@ -37,7 +50,9 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return ReportResource::make(
+            $report->load(['user'])
+        );
     }
 
     /**
@@ -53,7 +68,18 @@ class ReportController extends Controller
      */
     public function update(UpdateReportRequest $request, Report $report)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('report.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $report);
+
+        $report->update(
+            $request->validated()
+        );
+
+        return ReportResource::make(
+            $report->load(['user'])
+        );
     }
 
     /**
@@ -61,6 +87,11 @@ class ReportController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('report.delete'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('delete', $report);
+
+        $report->delete();
     }
 }

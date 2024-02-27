@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
@@ -87,15 +88,11 @@ Route::put('/yardsales/{yardsale}', [YardSaleController::class, 'update'])->name
 Route::delete('/yardsales/{yardsale}', [YardSaleController::class, 'destroy'])->name('yardsales.destroy');
 
 
-
-
-
-
-// * With Auth
-// Route::group(['middleware' => 'auth:sanctum'], function () {
-//     // * Tags
-//     Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
-
-//     // * User
-//     Route::get('/user', UserController::class)->name('user');
-// });
+// * Reports
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/reports/{report}', [ReportController::class, 'show'])->name('reports.show');
+Route::post('/reports', [ReportController::class, 'store'])
+    ->middleware(['auth:sanctum'])
+    ->name('reports.store');
+Route::put('/reports/{report}', [ReportController::class, 'update'])->name('reports.update');
+Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('reports.destroy');

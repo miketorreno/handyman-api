@@ -38,7 +38,6 @@ class EventPolicy
     public function update(User $user, Event $event): bool
     {
         return ($user->id == $event->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
-        //
     }
 
     /**

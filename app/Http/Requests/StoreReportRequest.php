@@ -11,7 +11,7 @@ class StoreReportRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['integer'],
+            'reportable_id' => ['integer'],
+            'reportable_type' => ['string'],
+            'reason' => ['string'],
+            'report_status' => ['integer'],
         ];
     }
 }
