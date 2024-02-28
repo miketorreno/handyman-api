@@ -14,6 +14,20 @@ class YardSaleControllerTest extends TestCase
 {
     use LazilyRefreshDatabase, WithFaker;
 
+    public function test_lists_yard_sales()
+    {
+        // $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+        YardSale::factory()->for($user)->count(2)->create();
+
+        $response = $this->getJson('/api/yardsales');
+
+        $response->assertOk()
+            ->assertJsonCount(2, 'data')
+            ->assertJsonStructure(['data', 'meta', 'links'])
+            ->assertJsonStructure(['data' => ['*' => ['id', 'title', 'description']]]);
+    }
+
     public function test_lists_yard_sales_that_belong_to_a_user()
     {
         // $this->withoutExceptionHandling();
@@ -43,8 +57,8 @@ class YardSaleControllerTest extends TestCase
         $response = $this->getJson('/api/yardsales/'.$yardSale->id);
         // dd($response);
 
-        $response->assertOk();
-            // ->assertJsonPath('data.user_id', $user->id);
+        $response->assertOk()
+            ->assertJsonPath('data.user_id', $user->id);
     }
 
     public function test_can_create_yard_sale()
@@ -59,6 +73,7 @@ class YardSaleControllerTest extends TestCase
 
         $response->assertCreated()
             ->assertJsonPath('data.user_id', $user->id);
+
         $this->assertDatabaseHas('yard_sales', [
             'id' => $response->json('data.id')
         ]);
@@ -66,22 +81,18 @@ class YardSaleControllerTest extends TestCase
     
     public function test_can_update_yard_sale()
     {
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $yardSale = YardSale::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['yardsale.update']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['yardsale.update']);
 
         $response = $this->putJson('/api/yardsales/'.$yardSale->id, [
             'title' => 'Updated YardSale',
         ]);
 
-        // dd($response);
-
-        $response->assertOk();
-            // ->assertJsonPath('data.title', 'Updated YardSale');
+        $response->assertOk()
+            ->assertJsonPath('data.title', 'Updated YardSale');
     }
 
     public function test_does_not_allow_updating_if_scope_is_not_provided()
@@ -101,35 +112,32 @@ class YardSaleControllerTest extends TestCase
         $user = User::factory()->create();
         $yardSale = YardSale::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['yardsale.delete']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['yardsale.delete']);
 
         $response = $this->deleteJson('/api/yardsales/'.$yardSale->id);
 
         $response->assertOk();
 
-        // $this->assertSoftDeleted($yardSale);
+        $this->assertSoftDeleted($yardSale);
     }
     
-    // public function test_can_not_delete_yard_sale_that_does_not_belong_to_user()
-    // {
-    //     $this->withoutExceptionHandling();
-    //     $user = User::factory()->create();
-    //     $anotherUser = User::factory()->create();
-    //     $yardSale = YardSale::factory()->for($anotherUser)->create();
+    public function test_can_not_delete_yard_sale_that_does_not_belong_to_user()
+    {
+        // $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $yardSale = YardSale::factory()->for($anotherUser)->create();
 
-    //     // $this->actingAs($user, ['yardsale.delete']);
-    //     $this->actingAs($user);
-    //     Sanctum::actingAs($user, ['yardsale.delete']);
+        $this->actingAs($user);
 
-    //     $response = $this->deleteJson('/api/yardsales/'.$yardSale->id);
+        $response = $this->deleteJson('/api/yardsales/'.$yardSale->id);
 
-    //     $response->assertStatus(403);
-    // }
+        $response->assertStatus(403);
+    }
 
     public function test_does_not_allow_deleting_if_scope_is_not_provided()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $yardSale = YardSale::factory()->create();
 

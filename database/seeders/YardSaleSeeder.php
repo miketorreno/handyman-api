@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\YardSale;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class YardSaleSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class YardSaleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        YardSale::factory(20)->create();
     }
 }

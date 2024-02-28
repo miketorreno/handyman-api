@@ -21,12 +21,12 @@ class Handyman extends User
 {
     use HasFactory, SoftDeletes;
 
-    const TYPE_INDIVIDUAL = 1;
-    const TYPE_GROUP = 2;
+    const INDIVIDUAL = 1;
+    const GROUP = 2;
 
-    const APPROVAL_PENDING = 1;
-    const APPROVAL_APPROVED = 2;
-    const APPROVAL_REJECTED = 3;
+    const PENDING = 1;
+    const APPROVED = 2;
+    const REJECTED = 3;
 
     protected $fillable = [
         'user_id',

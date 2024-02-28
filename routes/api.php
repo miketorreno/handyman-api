@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\ReportController;
@@ -23,6 +24,12 @@ use App\Http\Controllers\SubscriptionTypeController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth:sanctum')
+    ->name('logout');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -51,22 +58,38 @@ Route::get('/handymen/{handyman}', [HandymanController::class, 'show'])->name('h
 Route::post('/handymen', [HandymanController::class, 'store'])
     ->middleware(['auth:sanctum', 'verified'])
     ->name('handymen.store');
-Route::put('/handymen/{handyman}', [HandymanController::class, 'update'])->name('handymen.update');
-Route::delete('/handymen/{handyman}', [HandymanController::class, 'destroy'])->name('handymen.destroy');
+Route::put('/handymen/{handyman}', [HandymanController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('handymen.update');
+Route::delete('/handymen/{handyman}', [HandymanController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('handymen.destroy');
 
-Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanController::class, 'subscribe'])->name('handymen.subscribe');
-Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])->name('handymen.unsubscribe');
+Route::post('/handymen/{handyman}/subscriptions/{subscriptionType}', [HandymanController::class, 'subscribe'])
+    ->middleware(['auth:sanctum'])
+    ->name('handymen.subscribe');
+Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'unsubscribe'])
+    ->middleware(['auth:sanctum'])
+    ->name('handymen.unsubscribe');
 
 // Route::get('/handymen/{handyman}/reviews', [ReviewController::class, 'index'])->name('handymen.reviews.index');
-// Route::post('/handymen/{handyman}/reviews', [ReviewController::class, 'store'])->name('handymen.reviews.store');
+// Route::post('/handymen/{handyman}/reviews', [ReviewController::class, 'store'])
+    // ->middleware(['auth:sanctum'])
+    // ->name('handymen.reviews.store');
 
 
 // * Reviews
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
-Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::post('/reviews', [ReviewController::class, 'store'])
+    ->middleware(['auth:sanctum'])
+    ->name('reviews.store');
+Route::put('/reviews/{review}', [ReviewController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('reviews.update');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('reviews.destroy');
 
 
 // * Events
@@ -75,8 +98,12 @@ Route::get('/events/{event}', [EventController::class, 'show'])->name('events.sh
 Route::post('/events', [EventController::class, 'store'])
     ->middleware(['auth:sanctum'])
     ->name('events.store');
-Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
-Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::put('/events/{event}', [EventController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('events.update');
+Route::delete('/events/{event}', [EventController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('events.destroy');
 
 
 // * Yard Sales
@@ -85,8 +112,12 @@ Route::get('/yardsales/{yardsale}', [YardSaleController::class, 'show'])->name('
 Route::post('/yardsales', [YardSaleController::class, 'store'])
     ->middleware(['auth:sanctum'])
     ->name('yardsales.store');
-Route::put('/yardsales/{yardsale}', [YardSaleController::class, 'update'])->name('yardsales.update');
-Route::delete('/yardsales/{yardsale}', [YardSaleController::class, 'destroy'])->name('yardsales.destroy');
+Route::put('/yardsales/{yardsale}', [YardSaleController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('yardsales.update');
+Route::delete('/yardsales/{yardsale}', [YardSaleController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('yardsales.destroy');
 
 
 // * Reports
@@ -95,8 +126,12 @@ Route::get('/reports/{report}', [ReportController::class, 'show'])->name('report
 Route::post('/reports', [ReportController::class, 'store'])
     ->middleware(['auth:sanctum'])
     ->name('reports.store');
-Route::put('/reports/{report}', [ReportController::class, 'update'])->name('reports.update');
-Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('reports.destroy');
+Route::put('/reports/{report}', [ReportController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('reports.update');
+Route::delete('/reports/{report}', [ReportController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('reports.destroy');
 
 
 // * Quotes
@@ -105,5 +140,9 @@ Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.sh
 Route::post('/quotes', [QuoteController::class, 'store'])
     ->middleware(['auth:sanctum'])
     ->name('quotes.store');
-Route::put('/quotes/{quote}', [QuoteController::class, 'update'])->name('quotes.update');
-Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
+Route::put('/quotes/{quote}', [QuoteController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('quotes.update');
+Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('quotes.destroy');

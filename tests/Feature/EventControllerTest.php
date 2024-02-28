@@ -99,14 +99,13 @@ class EventControllerTest extends TestCase
         $event = Event::factory()->for($user)->create();
 
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['event.update']);
 
         $response = $this->putJson('/api/events/'.$event->id, [
             'title' => 'updated title',
         ]);
 
-        $response->assertOk();
-            // ->assertJsonPath('data.title', 'updated title');
+        $response->assertOk()
+            ->assertJsonPath('data.title', 'updated title');
     }
     
     public function test_can_delete_an_event()
@@ -115,7 +114,6 @@ class EventControllerTest extends TestCase
         $event = Event::factory()->for($user)->create();
 
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['event.delete']);
 
         $response = $this->deleteJson('/api/events/'.$event->id);
 

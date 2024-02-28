@@ -24,23 +24,23 @@ return new class extends Migration
 
         Category::create([
             'category' => 'category_one',
-            'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+            'description' => fake()->paragraph(),
         ]);
         Category::create([
             'category' => 'category_two',
-            'description' => 'Sint placeat rem sed molestiae ullam eius vero voluptate atque.',
+            'description' => fake()->paragraph(),
         ]);
         Category::create([
             'category' => 'category_three',
-            'description' => 'deserunt pariatur necessitatibus recusandae accusantium ipsa velit quos maxime quam possimus nemo.',
+            'description' => fake()->paragraph(),
         ]);
         Category::create([
             'category' => 'category_four',
-            'description' => 'Consequatur, voluptatem porro quisquam esse quos et expedita sequi mollitia quod at.',
+            'description' => fake()->paragraph(),
         ]);
         Category::create([
             'category' => 'category_five',
-            'description' => 'Minima eum incidunt omnis nihil. Sunt suscipit beatae numquam ut mollitia eligendi obcaecati eius..',
+            'description' => fake()->paragraph(),
         ]);
     }
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->index();
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();
@@ -25,27 +25,27 @@ return new class extends Migration
         Service::create([
             'category_id' => 5,
             'title' => 'service_one',
-            'description' => 'Ipsum minus deleniti et deserunt eveniet iure sint, sapiente magnam ducimus repellat veniam in.',
+            'description' => fake()->paragraph(),
         ]);
         Service::create([
             'category_id' => 4,
             'title' => 'service_two',
-            'description' => 'Perspiciatis rem incidunt illo, reprehenderit deserunt totam. Culpa, expedita eligendi.',
+            'description' => fake()->paragraph(),
         ]);
         Service::create([
             'category_id' => 3,
             'title' => 'service_three',
-            'description' => 'Voluptas repellat reprehenderit facere quas quia? Pariatur amet corrupti minima ipsa ipsam fugit natus quos.',
+            'description' => fake()->paragraph(),
         ]);
         Service::create([
             'category_id' => 2,
             'title' => 'service_four',
-            'description' => 'Eveniet vel eligendi eum aut eos fugiat ipsa illum ea facilis ullam illo delectus ratione eaque.',
+            'description' => fake()->paragraph(),
         ]);
         Service::create([
             'category_id' => 1,
             'title' => 'service_five',
-            'description' => 'Pariatur amet corrupti minima ipsa ipsam fugit natus quos.',
+            'description' => fake()->paragraph(),
         ]);
     }
 

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Quote;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class QuoteSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class QuoteSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Quote::factory(20)->create();
     }
 }

@@ -31,12 +31,12 @@ class HandymanFactory extends Factory
             'avg_rating' => rand(1, 5),
             'experience' => fake()->word(),
             'hire_count' => rand(1, 200),
-            'group_type' => fake()->randomElement([Handyman::TYPE_INDIVIDUAL, Handyman::TYPE_GROUP]),
+            'group_type' => fake()->randomElement([Handyman::INDIVIDUAL, Handyman::GROUP]),
             // 'group_members' => fake()->paragraph(),  // * json()
             // 'certifications' => fake()->paragraph(), // * json()
             // 'languages' => '{"0": "english", "1": "amharic"}',  // * json()
             'languages' => json_encode('{"languages": [{ "lang":"english"},{"lang":"amharic"}]}'),  // * json()
-            'approval_status' => Handyman::APPROVAL_APPROVED,
+            'approval_status' => Handyman::APPROVED,
         ];
     }
 }

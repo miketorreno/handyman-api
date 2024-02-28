@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\SubscriptionType;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SubscriptionTypeSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class SubscriptionTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        SubscriptionType::factory(20)->create();
     }
 }

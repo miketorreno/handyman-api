@@ -38,7 +38,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review): bool
     {
-        return ($user->id == $review->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
+        return ($user->id == $review->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
     }
 
     /**
@@ -46,7 +46,7 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review): bool
     {
-        return ($user->id == $review->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
+        return ($user->id == $review->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
     }
 
     /**

@@ -192,9 +192,7 @@ class ReviewControllerTest extends TestCase
         $user = User::factory()->create();
         $review = Review::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['review.update']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['review.update']);
 
         $response = $this->putJson('/api/reviews/'.$review->id, [
             'rating' => 4,
@@ -211,9 +209,7 @@ class ReviewControllerTest extends TestCase
         $user = User::factory()->create();
         $review = Review::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['review.update']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['review.update']);
 
         $response = $this->putJson('/api/reviews/'.$review->id, [
             'rating' => 4,
@@ -228,9 +224,7 @@ class ReviewControllerTest extends TestCase
         $user = User::factory()->create();
         $review = Review::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['review.update']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['review.update']);
 
         $response = $this->putJson('/api/reviews/'.$review->id, [
             'review' => 'Updated Review',
@@ -245,9 +239,7 @@ class ReviewControllerTest extends TestCase
         $user = User::factory()->create();
         $review = Review::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['review.update']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['review.update']);
 
         $response = $this->putJson('/api/reviews/'.$review->id, []);
 
@@ -289,9 +281,7 @@ class ReviewControllerTest extends TestCase
         $user = User::factory()->create();
         $review = Review::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['review.delete']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['review.delete']);
 
         $response = $this->deleteJson('/api/reviews/'.$review->id);
 
@@ -307,9 +297,7 @@ class ReviewControllerTest extends TestCase
         $anotherUser = User::factory()->create();
         $review = Review::factory()->for($anotherUser)->create();
 
-        // $this->actingAs($user, ['review.delete']);
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['review.delete']);
 
         $response = $this->deleteJson('/api/reviews/'.$review->id);
 

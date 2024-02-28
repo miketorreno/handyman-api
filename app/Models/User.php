@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Report;
 use App\Models\Review;
 use App\Models\Handyman;
+use App\Models\YardSale;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -19,10 +20,10 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     // Client, Handyman, Admin, SuperAdmin
-    const ROLE_CLIENT = 1;
-    const ROLE_HANDYMAN = 2;
-    const ROLE_ADMIN = 3;
-    const ROLE_SUPER_ADMIN = 4;
+    const CLIENT = 1;
+    const HANDYMAN = 2;
+    const ADMIN = 3;
+    const SUPER_ADMIN = 4;
 
     /**
      * The attributes that are mass assignable.
@@ -73,5 +74,10 @@ class User extends Authenticatable
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function yardSales(): HasMany
+    {
+        return $this->hasMany(YardSale::class);
     }
 }

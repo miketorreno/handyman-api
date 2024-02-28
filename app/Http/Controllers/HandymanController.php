@@ -25,7 +25,7 @@ class HandymanController extends Controller
     public function index()
     {
         $handymen = Handyman::query()
-            ->where('approval_status', Handyman::APPROVAL_APPROVED)
+            ->where('approval_status', Handyman::APPROVED)
             ->when(request('location'), 
                 fn ($builder) => $builder->whereRelation('user', 'location', '=', request('location')))
             ->when(request('language'), 
@@ -131,7 +131,7 @@ class HandymanController extends Controller
         abort_unless(auth()->user()->tokenCan('handyman.update'),
             Response::HTTP_FORBIDDEN
         );
-        // $this->authorize('update', $handyman);
+        $this->authorize('update', $handyman);
 
         $attributes = $request->validated();
         $attributes['user_id'] = auth()->id();
@@ -168,7 +168,7 @@ class HandymanController extends Controller
         abort_unless(auth()->user()->tokenCan('handyman.delete'),
             Response::HTTP_FORBIDDEN
         );
-        // $this->authorize('delete', $handyman);
+        $this->authorize('delete', $handyman);
 
         $handyman->delete();
 
@@ -180,7 +180,7 @@ class HandymanController extends Controller
         abort_unless(auth()->user()->tokenCan('handyman.update'),
             Response::HTTP_FORBIDDEN
         );
-        // $this->authorize('update', $handyman);
+        $this->authorize('update', $handyman);
 
         $handyman->update(['subscription_type_id' => $subscriptionType->id]);
 
@@ -194,7 +194,7 @@ class HandymanController extends Controller
         abort_unless(auth()->user()->tokenCan('handyman.update'),
             Response::HTTP_FORBIDDEN
         );
-        // $this->authorize('update', $handyman);
+        $this->authorize('update', $handyman);
         
         $handyman->update(['subscription_type_id' => null]);
 

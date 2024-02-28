@@ -37,7 +37,7 @@ class HandymanPolicy
      */
     public function update(User $user, Handyman $handyman): bool
     {
-        return ($user->id == $handyman->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
+        return ($user->id == $handyman->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +45,7 @@ class HandymanPolicy
      */
     public function delete(User $user, Handyman $handyman): bool
     {
-        return ($user->id == $handyman->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
+        return ($user->id == $handyman->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
     }
 
     /**

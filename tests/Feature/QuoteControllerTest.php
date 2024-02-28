@@ -80,7 +80,6 @@ class QuoteControllerTest extends TestCase
         $quote = Quote::factory()->for($user)->create();
 
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['quote.update']);
 
         $response = $this->putJson('/api/quotes/'.$quote->id, [
             'quote_details' => 'updated detail',
@@ -96,7 +95,6 @@ class QuoteControllerTest extends TestCase
         $quote = Quote::factory()->for($user)->create();
 
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['quote.delete']);
 
         $response = $this->deleteJson('/api/quotes/'.$quote->id);
 

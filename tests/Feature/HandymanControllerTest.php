@@ -46,8 +46,8 @@ class HandymanControllerTest extends TestCase
     public function test_only_lists_handymen_that_are_approved()
     {
         Handyman::factory(3)->create();
-        Handyman::factory()->create(['approval_status' => Handyman::APPROVAL_PENDING]);
-        Handyman::factory()->create(['approval_status' => Handyman::APPROVAL_REJECTED]);
+        Handyman::factory()->create(['approval_status' => Handyman::PENDING]);
+        Handyman::factory()->create(['approval_status' => Handyman::REJECTED]);
 
         $response = $this->getJson('/api/handymen');
 
@@ -132,8 +132,6 @@ class HandymanControllerTest extends TestCase
 
         $response = $this->getJson('/api/handymen');
 
-        // dd($response);
-
         $response->assertOk()
             ->assertJsonCount(1, 'data.0.reviews')
             ->assertJsonCount(1, 'data.0.quotes')
@@ -165,8 +163,6 @@ class HandymanControllerTest extends TestCase
 
         $response = $this->getJson('/api/handymen/'.$handyman->id);
         
-        // dd($response);
-
         $response->assertOk();
             // ->assertJsonCount(1, 'data.reviews')
             // ->assertJsonCount(1, 'data.quotes')
@@ -181,7 +177,7 @@ class HandymanControllerTest extends TestCase
         // $this->withoutExceptionHandling();
         // Notification::fake();
 
-        // $admin = User::factory()->create(['is_admin' => true]);
+        // $admin = User::factory()->create(['role' => User::ADMIN]);
         $user = User::factory()->create();
         $services = Service::factory(2)->create();
         $categories = Category::factory(2)->create();
@@ -192,8 +188,6 @@ class HandymanControllerTest extends TestCase
             'categories' => $categories->pluck('id')->toArray(),
             'services' => $services->pluck('id')->toArray()
         ]));
-
-        // dd($response);
 
         $response->assertCreated()
             ->assertJsonPath('data.user.id', $user->id);
@@ -216,7 +210,7 @@ class HandymanControllerTest extends TestCase
         // $this->withoutExceptionHandling();
         // Notification::fake();
         
-        // $admin = User::factory()->create(['is_admin' => true]);
+        // $admin = User::factory()->create(['role' => User::ADMIN]);
         $user = User::factory()->create();
         $categories = Category::factory(3)->create();
         $anotherCategory = Category::factory()->create();
@@ -227,17 +221,13 @@ class HandymanControllerTest extends TestCase
         $handyman->services()->attach($services);
         $handyman->categories()->attach($categories);
 
-        // $this->actingAs($user);
-        // $this->actingAs($user, ['handyman.update']);
-        Sanctum::actingAs($user, ['handyman.update']);
+        $this->actingAs($user);
 
         $response = $this->putJson('/api/handymen/'.$handyman->id, [
             'about' => 'Updated Handyman',
             'services' => [$services[0]->id, $anotherService->id],
             'categories' => [$categories[0]->id, $anotherCategory->id]
         ]);
-
-        // dd($response);
 
         $response->assertOk();
             // ->assertJsonCount(2, 'data.categories')
@@ -287,7 +277,7 @@ class HandymanControllerTest extends TestCase
         // $this->withoutExceptionHandling();
         // Notification::fake();
         
-        // $admin = User::factory()->create(['is_admin' => true]);
+        // $admin = User::factory()->create(['role' => User::ADMIN]);
         $user = User::factory()->create();
         $handyman = Handyman::factory()->for($user)->create();
 
@@ -295,14 +285,13 @@ class HandymanControllerTest extends TestCase
         //     'url' => 'handyman_image.jpg'
         // ]));
 
-        // $this->actingAs($user);
-        Sanctum::actingAs($user, ['handyman.delete']);
+        $this->actingAs($user);
 
         $response = $this->deleteJson('/api/handymen/'.$handyman->id);
 
         $response->assertOk();
 
-        // $this->assertSoftDeleted($handyman);
+        $this->assertSoftDeleted($handyman);
 
         // Notification::assertSentTo($admin, DeleteHandymanNotification::class);
         // ! Failing to assert the notification is saved to database
@@ -342,8 +331,7 @@ class HandymanControllerTest extends TestCase
         $user = User::factory()->create();
         $handyman = Handyman::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['handyman.update']);
-        Sanctum::actingAs($user, ['handyman.update']);
+        $this->actingAs($user);
         
         $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions/'.$subscriptions[2]->id);
         
@@ -370,25 +358,24 @@ class HandymanControllerTest extends TestCase
         $user = User::factory()->create();
         $handyman = Handyman::factory()->for($user)->create();
 
-        // $this->actingAs($user, ['handyman.update']);
-        Sanctum::actingAs($user, ['handyman.update']);
+        $this->actingAs($user);
         
         $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions');
 
         $response->assertOk();
     }
     
-    // public function test_can_not_unsubscribe_if_handyman_does_not_belong_to_user()
-    // {
-    //     // $this->withoutExceptionHandling();
-    //     $user = User::factory()->create();
-    //     $anotherUser = User::factory()->create();
-    //     $handyman = Handyman::factory()->for($anotherUser)->create();
+    public function test_can_not_unsubscribe_if_handyman_does_not_belong_to_user()
+    {
+        // $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $handyman = Handyman::factory()->for($anotherUser)->create();
 
-    //     $this->actingAs($user);
+        $this->actingAs($user);
 
-    //     $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions');
+        $response = $this->postJson('/api/handymen/'.$handyman->id.'/subscriptions');
 
-    //     $response->assertForbidden();
-    // }
+        $response->assertForbidden();
+    }
 }

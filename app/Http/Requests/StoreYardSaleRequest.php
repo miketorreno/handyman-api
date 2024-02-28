@@ -22,6 +22,7 @@ class StoreYardSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => ['integer'],
             'title' => ['string'],
             'description' => ['string'],
             'location' => ['string'],

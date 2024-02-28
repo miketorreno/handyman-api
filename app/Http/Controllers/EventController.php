@@ -83,9 +83,9 @@ class EventController extends Controller
         );
         $this->authorize('update', $event);
 
-        $event->update([
+        $event->update(
             $request->validated()
-        ]);
+        );
 
         return EventResource::make(
             $event->load(['user'])

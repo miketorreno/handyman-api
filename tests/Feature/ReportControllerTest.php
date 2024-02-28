@@ -79,14 +79,13 @@ class ReportControllerTest extends TestCase
         $report = Report::factory()->for($user)->create();
 
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['report.update']);
 
         $response = $this->putJson('/api/reports/'.$report->id, [
             'reason' => 'updated reason',
         ]);
 
-        $response->assertOk();
-            // ->assertJsonPath('data.reason', 'updated reason');
+        $response->assertOk()
+            ->assertJsonPath('data.reason', 'updated reason');
     }
     
     public function test_can_delete_a_report()
@@ -95,7 +94,6 @@ class ReportControllerTest extends TestCase
         $report = Report::factory()->for($user)->create();
 
         $this->actingAs($user);
-        Sanctum::actingAs($user, ['report.delete']);
 
         $response = $this->deleteJson('/api/reports/'.$report->id);
 

@@ -58,9 +58,9 @@ class YardSaleController extends Controller
      */
     public function show(YardSale $yardSale)
     {
-        $yardSale->load(['user']);
-
-        return YardSaleResource::make($yardSale);
+        return YardSaleResource::make(
+            $yardSale->load(['user'])
+        );
     }
 
     /**
@@ -79,13 +79,15 @@ class YardSaleController extends Controller
         abort_unless(auth()->user()->tokenCan('yardsale.update'),
             Response::HTTP_FORBIDDEN
         );
-        // $this->authorize('update', $yardSale);
+        $this->authorize('update', $yardSale);
         
-        $yardSale->update([
+        $yardSale->update(
             $request->validated()
-        ]);
+        );
 
-        return YardSaleResource::make($yardSale->load(['user']));
+        return YardSaleResource::make(
+            $yardSale->load(['user'])
+        );
     }
 
     /**
@@ -96,7 +98,7 @@ class YardSaleController extends Controller
         abort_unless(auth()->user()->tokenCan('yardsale.delete'),
             Response::HTTP_FORBIDDEN
         );
-        // $this->authorize('delete', $yardSale);
+        $this->authorize('delete', $yardSale);
 
         $yardSale->delete();
     }

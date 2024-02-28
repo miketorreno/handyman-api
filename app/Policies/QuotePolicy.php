@@ -37,7 +37,7 @@ class QuotePolicy
      */
     public function update(User $user, Quote $quote): bool
     {
-        return ($user->id == $quote->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
+        return ($user->id == $quote->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +45,7 @@ class QuotePolicy
      */
     public function delete(User $user, Quote $quote): bool
     {
-        return ($user->id == $quote->user_id) || ($user->role == Handyman::ROLE_ADMIN) || ($user->role == Handyman::ROLE_SUPER_ADMIN);
+        return ($user->id == $quote->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
     }
 
     /**
