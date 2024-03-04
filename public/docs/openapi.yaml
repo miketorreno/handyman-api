@@ -26,11 +26,11 @@ paths:
                 email:
                   type: email
                   description: ''
-                  example: jtromp@example.org
+                  example: eichmann.owen@example.net
                 password:
                   type: required
                   description: ''
-                  example: ~B7-5h%/!(\
+                  example: "?_!eJe@7'("
               required:
                 - email
       security: []
@@ -714,13 +714,13 @@ paths:
                         deleted_at: null
                   links:
                     first: 'http://localhost/api/events?page=1'
-                    last: 'http://localhost/api/events?page=2'
+                    last: 'http://localhost/api/events?page=3'
                     prev: null
                     next: 'http://localhost/api/events?page=2'
                   meta:
                     current_page: 1
                     from: 1
-                    last_page: 2
+                    last_page: 3
                     links:
                       -
                         url: null
@@ -735,13 +735,17 @@ paths:
                         label: '2'
                         active: false
                       -
+                        url: 'http://localhost/api/events?page=3'
+                        label: '3'
+                        active: false
+                      -
                         url: 'http://localhost/api/events?page=2'
                         label: 'Next &raquo;'
                         active: false
                     path: 'http://localhost/api/events'
                     per_page: 15
                     to: 15
-                    total: 21
+                    total: 31
                 properties:
                   data:
                     type: array
@@ -1186,7 +1190,7 @@ paths:
                         example: 'http://localhost/api/events?page=1'
                       last:
                         type: string
-                        example: 'http://localhost/api/events?page=2'
+                        example: 'http://localhost/api/events?page=3'
                       prev:
                         type: string
                         example: null
@@ -1204,7 +1208,7 @@ paths:
                         example: 1
                       last_page:
                         type: integer
-                        example: 2
+                        example: 3
                       links:
                         type: array
                         example:
@@ -1219,6 +1223,10 @@ paths:
                           -
                             url: 'http://localhost/api/events?page=2'
                             label: '2'
+                            active: false
+                          -
+                            url: 'http://localhost/api/events?page=3'
+                            label: '3'
                             active: false
                           -
                             url: 'http://localhost/api/events?page=2'
@@ -1247,7 +1255,7 @@ paths:
                         example: 15
                       total:
                         type: integer
-                        example: 21
+                        example: 31
       tags:
         - Events
       security: []
@@ -1260,7 +1268,7 @@ paths:
       tags:
         - Events
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
@@ -1269,23 +1277,25 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: similique
                 description:
                   type: string
                   description: ''
-                  example: 'Molestiae ab cum asperiores minima velit.'
+                  example: 'Veniam sed est occaecati quam repellendus sapiente.'
                 location:
                   type: string
                   description: ''
-                  example: fugiat
+                  example: qui
                 date_and_time:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-28T10:11:54'
+                  example: '2024-02-28T12:12:18'
                 event_type:
                   type: integer
                   description: ''
                   example: 1
+              required:
+                - title
       security: []
   '/api/events/{id}':
     get:
@@ -1419,23 +1429,23 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: error
+                  example: ipsum
                 description:
                   type: string
                   description: ''
-                  example: 'Ad quis non vel dolor et.'
+                  example: 'Beatae consequuntur nemo sed commodi.'
                 location:
                   type: string
                   description: ''
-                  example: nihil
+                  example: consequatur
                 date_and_time:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-28T10:11:54'
+                  example: '2024-02-28T12:12:18'
                 event_type:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 1
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -3143,27 +3153,27 @@ paths:
                 tools:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["a","id"]'
+                  example: '["occaecati","reprehenderit"]'
                 membership_level:
                   type: string
                   description: ''
-                  example: alias
+                  example: consequatur
                 reputation_score:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 1
                 avg_rating:
                   type: number
                   description: ''
-                  example: 24453.565603637
+                  example: 210921.37
                 experience:
                   type: string
                   description: ''
-                  example: similique
+                  example: doloremque
                 hire_count:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 6
                 group_type:
                   type: integer
                   description: ''
@@ -3171,31 +3181,31 @@ paths:
                 group_members:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["iure","dolore"]'
+                  example: '["esse","laboriosam"]'
                 certifications:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["illo","voluptatem"]'
+                  example: '["iste","voluptatum"]'
                 languages:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["possimus","optio"]'
+                  example: '["natus","ut"]'
                 approval_status:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 9
                 categories:
                   type: array
                   description: ''
                   example:
-                    - 7
+                    - 9
                   items:
                     type: integer
                 services:
                   type: array
                   description: ''
                   example:
-                    - 17
+                    - 20
                   items:
                     type: integer
       security: []
@@ -3425,63 +3435,63 @@ paths:
                 about:
                   type: string
                   description: ''
-                  example: soluta
+                  example: impedit
                 tools:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["quo","ipsa"]'
+                  example: '["et","aut"]'
                 membership_level:
                   type: string
                   description: ''
-                  example: sint
+                  example: sed
                 reputation_score:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 17
                 avg_rating:
                   type: number
                   description: ''
-                  example: 177190261.32
+                  example: 185.094
                 experience:
                   type: string
                   description: ''
-                  example: eos
+                  example: dolores
                 hire_count:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 10
                 group_type:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 8
                 group_members:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["est","nisi"]'
+                  example: '["dolorem","sint"]'
                 certifications:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["rerum","expedita"]'
+                  example: '["molestiae","sint"]'
                 languages:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["quos","sed"]'
+                  example: '["rerum","commodi"]'
                 approval_status:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 4
                 categories:
                   type: array
                   description: ''
                   example:
-                    - 20
+                    - 15
                   items:
                     type: integer
                 services:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 19
                   items:
                     type: integer
       security: []
@@ -4019,23 +4029,23 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 4
                 handyman_id:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 18
                 quote_details:
                   type: string
                   description: ''
-                  example: iusto
+                  example: amet
                 price:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 7
                 acceptance_status:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 6
       security: []
   '/api/quotes/{id}':
     get:
@@ -4245,15 +4255,15 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 18
                 handyman_id:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 16
                 quote_details:
                   type: string
                   description: ''
-                  example: iste
+                  example: exercitationem
                 price:
                   type: integer
                   description: ''
@@ -4261,7 +4271,7 @@ paths:
                 acceptance_status:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 4
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -4759,23 +4769,23 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 2
                 reportable_id:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 9
                 reportable_type:
                   type: string
                   description: ''
-                  example: qui
+                  example: suscipit
                 reason:
                   type: string
                   description: ''
-                  example: nobis
+                  example: natus
                 report_status:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 6
       security: []
   '/api/reports/{id}':
     get:
@@ -4901,23 +4911,23 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 15
                 reportable_id:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 12
                 reportable_type:
                   type: string
                   description: ''
-                  example: et
+                  example: quia
                 reason:
                   type: string
                   description: ''
-                  example: qui
+                  example: aut
                 report_status:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 3
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -6562,27 +6572,27 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 15
                 handyman_id:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 17
                 rating:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 1
                 review:
                   type: string
                   description: ''
-                  example: fuga
+                  example: temporibus
                 edited:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 requested:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
               required:
                 - user_id
                 - handyman_id
@@ -6803,11 +6813,11 @@ paths:
                 rating:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 19
                 review:
                   type: string
                   description: ''
-                  example: qui
+                  example: molestias
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -9005,7 +9015,7 @@ paths:
                     path: 'http://localhost/api/yardsales'
                     per_page: 15
                     to: 15
-                    total: 20
+                    total: 21
                 properties:
                   data:
                     type: array
@@ -9493,7 +9503,7 @@ paths:
                         example: 15
                       total:
                         type: integer
-                        example: 20
+                        example: 21
       tags:
         - 'Yard sales'
       security: []
@@ -9512,26 +9522,30 @@ paths:
             schema:
               type: object
               properties:
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 13
                 title:
                   type: string
                   description: ''
-                  example: hic
+                  example: accusamus
                 description:
                   type: string
                   description: ''
-                  example: 'Consequatur architecto dolorum sint sunt.'
+                  example: 'Voluptatem recusandae eum facilis qui cum ipsa.'
                 location:
                   type: string
                   description: ''
-                  example: veritatis
+                  example: facilis
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-28T10:11:54'
+                  example: '2024-02-28T12:12:18'
                 items:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["tempora","dolores"]'
+                  example: '["explicabo","beatae"]'
       security: []
   '/api/yardsales/{id}':
     get:
@@ -9574,26 +9588,30 @@ paths:
             schema:
               type: object
               properties:
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 7
                 title:
                   type: string
                   description: ''
-                  example: quis
+                  example: voluptas
                 description:
                   type: string
                   description: ''
-                  example: 'Quo quo ducimus repellendus vel autem dolorum reprehenderit.'
+                  example: 'Et rem aperiam vel architecto deleniti fugiat quis explicabo.'
                 location:
                   type: string
                   description: ''
-                  example: itaque
+                  example: corporis
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-28T10:11:54'
+                  example: '2024-02-28T12:12:18'
                 items:
                   type: string
                   description: 'Must be a valid JSON string.'
-                  example: '["sit","ut"]'
+                  example: '["qui","quia"]'
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'

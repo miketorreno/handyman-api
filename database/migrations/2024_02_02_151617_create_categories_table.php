@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('category');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();

@@ -49,14 +49,9 @@ class HandymanController extends Controller
                 )
             )
             ->with(['user', 'subscriptionType', 'categories', 'services', 'reviews', 'quotes'])
-            // ->morphWithCount(['reviews'])
-            // ->with([
-            //     'reviewable' => function (MorphTo $morphTo) {
-            //         $morphTo->morphWithCount();
-            //     }
-            // ])
             // ->latest('id')
-            ->withAvg('reviews', 'rating')
+            // ->withAvg('reviews', 'rating')
+            ->withCount('reviews')
             ->paginate();
 
         return HandymanResource::collection(

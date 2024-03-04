@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('location');
             $table->timestamp('date_and_time');
             $table->tinyInteger('event_type')->default(1);

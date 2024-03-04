@@ -318,8 +318,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"email\": \"jtromp@example.org\",
-    \"password\": \"~B7-5h%\\/!(\\\\\"
+    \"email\": \"eichmann.owen@example.net\",
+    \"password\": \"?_!eJe@7\'(\"
 }"
 </code></pre></div>
 
@@ -336,8 +336,8 @@ const headers = {
 };
 
 let body = {
-    "email": "jtromp@example.org",
-    "password": "~B7-5h%\/!(\\"
+    "email": "eichmann.owen@example.net",
+    "password": "?_!eJe@7'("
 };
 
 fetch(url, {
@@ -437,10 +437,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-login"
-               value="jtromp@example.org"
+               value="eichmann.owen@example.net"
                data-component="body">
     <br>
-<p>Example: <code>jtromp@example.org</code></p>
+<p>Example: <code>eichmann.owen@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -448,10 +448,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-login"
-               value="~B7-5h%/!(\"
+               value="?_!eJe@7'("
                data-component="body">
     <br>
-<p>Example: <code>~B7-5h%/!(\</code></p>
+<p>Example: <code>?_!eJe@7'(</code></p>
         </div>
         </form>
 
@@ -1406,14 +1406,14 @@ access-control-allow-origin: *
     ],
     &quot;links&quot;: {
         &quot;first&quot;: &quot;http://localhost/api/events?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/events?page=2&quot;,
+        &quot;last&quot;: &quot;http://localhost/api/events?page=3&quot;,
         &quot;prev&quot;: null,
         &quot;next&quot;: &quot;http://localhost/api/events?page=2&quot;
     },
     &quot;meta&quot;: {
         &quot;current_page&quot;: 1,
         &quot;from&quot;: 1,
-        &quot;last_page&quot;: 2,
+        &quot;last_page&quot;: 3,
         &quot;links&quot;: [
             {
                 &quot;url&quot;: null,
@@ -1431,6 +1431,11 @@ access-control-allow-origin: *
                 &quot;active&quot;: false
             },
             {
+                &quot;url&quot;: &quot;http://localhost/api/events?page=3&quot;,
+                &quot;label&quot;: &quot;3&quot;,
+                &quot;active&quot;: false
+            },
+            {
                 &quot;url&quot;: &quot;http://localhost/api/events?page=2&quot;,
                 &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
                 &quot;active&quot;: false
@@ -1439,7 +1444,7 @@ access-control-allow-origin: *
         &quot;path&quot;: &quot;http://localhost/api/events&quot;,
         &quot;per_page&quot;: 15,
         &quot;to&quot;: 15,
-        &quot;total&quot;: 21
+        &quot;total&quot;: 31
     }
 }</code>
  </pre>
@@ -1720,10 +1725,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"title\": \"voluptatem\",
-    \"description\": \"Molestiae ab cum asperiores minima velit.\",
-    \"location\": \"fugiat\",
-    \"date_and_time\": \"2024-02-28T10:11:54\",
+    \"title\": \"similique\",
+    \"description\": \"Veniam sed est occaecati quam repellendus sapiente.\",
+    \"location\": \"qui\",
+    \"date_and_time\": \"2024-02-28T12:12:18\",
     \"event_type\": 1
 }"
 </code></pre></div>
@@ -1741,10 +1746,10 @@ const headers = {
 };
 
 let body = {
-    "title": "voluptatem",
-    "description": "Molestiae ab cum asperiores minima velit.",
-    "location": "fugiat",
-    "date_and_time": "2024-02-28T10:11:54",
+    "title": "similique",
+    "description": "Veniam sed est occaecati quam repellendus sapiente.",
+    "location": "qui",
+    "date_and_time": "2024-02-28T12:12:18",
     "event_type": 1
 };
 
@@ -1842,13 +1847,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="POSTapi-events"
-               value="voluptatem"
+               value="similique"
                data-component="body">
     <br>
-<p>Example: <code>voluptatem</code></p>
+<p>Example: <code>similique</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -1856,10 +1861,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-events"
-               value="Molestiae ab cum asperiores minima velit."
+               value="Veniam sed est occaecati quam repellendus sapiente."
                data-component="body">
     <br>
-<p>Example: <code>Molestiae ab cum asperiores minima velit.</code></p>
+<p>Example: <code>Veniam sed est occaecati quam repellendus sapiente.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>location</code></b>&nbsp;&nbsp;
@@ -1867,10 +1872,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="location"                data-endpoint="POSTapi-events"
-               value="fugiat"
+               value="qui"
                data-component="body">
     <br>
-<p>Example: <code>fugiat</code></p>
+<p>Example: <code>qui</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_and_time</code></b>&nbsp;&nbsp;
@@ -1878,10 +1883,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="date_and_time"                data-endpoint="POSTapi-events"
-               value="2024-02-28T10:11:54"
+               value="2024-02-28T12:12:18"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2024-02-28T10:11:54</code></p>
+<p>Must be a valid date. Example: <code>2024-02-28T12:12:18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_type</code></b>&nbsp;&nbsp;
@@ -1914,11 +1919,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"title\": \"error\",
-    \"description\": \"Ad quis non vel dolor et.\",
-    \"location\": \"nihil\",
-    \"date_and_time\": \"2024-02-28T10:11:54\",
-    \"event_type\": 13
+    \"title\": \"ipsum\",
+    \"description\": \"Beatae consequuntur nemo sed commodi.\",
+    \"location\": \"consequatur\",
+    \"date_and_time\": \"2024-02-28T12:12:18\",
+    \"event_type\": 1
 }"
 </code></pre></div>
 
@@ -1935,11 +1940,11 @@ const headers = {
 };
 
 let body = {
-    "title": "error",
-    "description": "Ad quis non vel dolor et.",
-    "location": "nihil",
-    "date_and_time": "2024-02-28T10:11:54",
-    "event_type": 13
+    "title": "ipsum",
+    "description": "Beatae consequuntur nemo sed commodi.",
+    "location": "consequatur",
+    "date_and_time": "2024-02-28T12:12:18",
+    "event_type": 1
 };
 
 fetch(url, {
@@ -2051,10 +2056,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="PUTapi-events--id-"
-               value="error"
+               value="ipsum"
                data-component="body">
     <br>
-<p>Example: <code>error</code></p>
+<p>Example: <code>ipsum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -2062,10 +2067,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-events--id-"
-               value="Ad quis non vel dolor et."
+               value="Beatae consequuntur nemo sed commodi."
                data-component="body">
     <br>
-<p>Example: <code>Ad quis non vel dolor et.</code></p>
+<p>Example: <code>Beatae consequuntur nemo sed commodi.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>location</code></b>&nbsp;&nbsp;
@@ -2073,10 +2078,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="location"                data-endpoint="PUTapi-events--id-"
-               value="nihil"
+               value="consequatur"
                data-component="body">
     <br>
-<p>Example: <code>nihil</code></p>
+<p>Example: <code>consequatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_and_time</code></b>&nbsp;&nbsp;
@@ -2084,10 +2089,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="date_and_time"                data-endpoint="PUTapi-events--id-"
-               value="2024-02-28T10:11:54"
+               value="2024-02-28T12:12:18"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2024-02-28T10:11:54</code></p>
+<p>Must be a valid date. Example: <code>2024-02-28T12:12:18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_type</code></b>&nbsp;&nbsp;
@@ -2095,10 +2100,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="event_type"                data-endpoint="PUTapi-events--id-"
-               value="13"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>13</code></p>
+<p>Example: <code>1</code></p>
         </div>
         </form>
 
@@ -3410,22 +3415,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
     \"about\": \"et\",
-    \"tools\": \"[\\\"a\\\",\\\"id\\\"]\",
-    \"membership_level\": \"alias\",
-    \"reputation_score\": 13,
-    \"avg_rating\": 24453.565603637,
-    \"experience\": \"similique\",
-    \"hire_count\": 7,
+    \"tools\": \"[\\\"occaecati\\\",\\\"reprehenderit\\\"]\",
+    \"membership_level\": \"consequatur\",
+    \"reputation_score\": 1,
+    \"avg_rating\": 210921.37,
+    \"experience\": \"doloremque\",
+    \"hire_count\": 6,
     \"group_type\": 11,
-    \"group_members\": \"[\\\"iure\\\",\\\"dolore\\\"]\",
-    \"certifications\": \"[\\\"illo\\\",\\\"voluptatem\\\"]\",
-    \"languages\": \"[\\\"possimus\\\",\\\"optio\\\"]\",
-    \"approval_status\": 13,
+    \"group_members\": \"[\\\"esse\\\",\\\"laboriosam\\\"]\",
+    \"certifications\": \"[\\\"iste\\\",\\\"voluptatum\\\"]\",
+    \"languages\": \"[\\\"natus\\\",\\\"ut\\\"]\",
+    \"approval_status\": 9,
     \"categories\": [
-        7
+        9
     ],
     \"services\": [
-        17
+        20
     ]
 }"
 </code></pre></div>
@@ -3444,22 +3449,22 @@ const headers = {
 
 let body = {
     "about": "et",
-    "tools": "[\"a\",\"id\"]",
-    "membership_level": "alias",
-    "reputation_score": 13,
-    "avg_rating": 24453.565603637,
-    "experience": "similique",
-    "hire_count": 7,
+    "tools": "[\"occaecati\",\"reprehenderit\"]",
+    "membership_level": "consequatur",
+    "reputation_score": 1,
+    "avg_rating": 210921.37,
+    "experience": "doloremque",
+    "hire_count": 6,
     "group_type": 11,
-    "group_members": "[\"iure\",\"dolore\"]",
-    "certifications": "[\"illo\",\"voluptatem\"]",
-    "languages": "[\"possimus\",\"optio\"]",
-    "approval_status": 13,
+    "group_members": "[\"esse\",\"laboriosam\"]",
+    "certifications": "[\"iste\",\"voluptatum\"]",
+    "languages": "[\"natus\",\"ut\"]",
+    "approval_status": 9,
     "categories": [
-        7
+        9
     ],
     "services": [
-        17
+        20
     ]
 };
 
@@ -3571,10 +3576,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="tools"                data-endpoint="POSTapi-handymen"
-               value="["a","id"]"
+               value="["occaecati","reprehenderit"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["a","id"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["occaecati","reprehenderit"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>membership_level</code></b>&nbsp;&nbsp;
@@ -3582,10 +3587,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="membership_level"                data-endpoint="POSTapi-handymen"
-               value="alias"
+               value="consequatur"
                data-component="body">
     <br>
-<p>Example: <code>alias</code></p>
+<p>Example: <code>consequatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reputation_score</code></b>&nbsp;&nbsp;
@@ -3593,10 +3598,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="reputation_score"                data-endpoint="POSTapi-handymen"
-               value="13"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>13</code></p>
+<p>Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>avg_rating</code></b>&nbsp;&nbsp;
@@ -3604,10 +3609,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="avg_rating"                data-endpoint="POSTapi-handymen"
-               value="24453.565603637"
+               value="210921.37"
                data-component="body">
     <br>
-<p>Example: <code>24453.565603637</code></p>
+<p>Example: <code>210921.37</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>experience</code></b>&nbsp;&nbsp;
@@ -3615,10 +3620,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="experience"                data-endpoint="POSTapi-handymen"
-               value="similique"
+               value="doloremque"
                data-component="body">
     <br>
-<p>Example: <code>similique</code></p>
+<p>Example: <code>doloremque</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hire_count</code></b>&nbsp;&nbsp;
@@ -3626,10 +3631,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hire_count"                data-endpoint="POSTapi-handymen"
-               value="7"
+               value="6"
                data-component="body">
     <br>
-<p>Example: <code>7</code></p>
+<p>Example: <code>6</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>group_type</code></b>&nbsp;&nbsp;
@@ -3648,10 +3653,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="group_members"                data-endpoint="POSTapi-handymen"
-               value="["iure","dolore"]"
+               value="["esse","laboriosam"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["iure","dolore"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["esse","laboriosam"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>certifications</code></b>&nbsp;&nbsp;
@@ -3659,10 +3664,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="certifications"                data-endpoint="POSTapi-handymen"
-               value="["illo","voluptatem"]"
+               value="["iste","voluptatum"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["illo","voluptatem"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["iste","voluptatum"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>languages</code></b>&nbsp;&nbsp;
@@ -3670,10 +3675,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="languages"                data-endpoint="POSTapi-handymen"
-               value="["possimus","optio"]"
+               value="["natus","ut"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["possimus","optio"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["natus","ut"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>approval_status</code></b>&nbsp;&nbsp;
@@ -3681,10 +3686,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="approval_status"                data-endpoint="POSTapi-handymen"
-               value="13"
+               value="9"
                data-component="body">
     <br>
-<p>Example: <code>13</code></p>
+<p>Example: <code>9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>categories</code></b>&nbsp;&nbsp;
@@ -3732,23 +3737,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"about\": \"soluta\",
-    \"tools\": \"[\\\"quo\\\",\\\"ipsa\\\"]\",
-    \"membership_level\": \"sint\",
-    \"reputation_score\": 9,
-    \"avg_rating\": 177190261.32,
-    \"experience\": \"eos\",
-    \"hire_count\": 5,
-    \"group_type\": 12,
-    \"group_members\": \"[\\\"est\\\",\\\"nisi\\\"]\",
-    \"certifications\": \"[\\\"rerum\\\",\\\"expedita\\\"]\",
-    \"languages\": \"[\\\"quos\\\",\\\"sed\\\"]\",
-    \"approval_status\": 15,
+    \"about\": \"impedit\",
+    \"tools\": \"[\\\"et\\\",\\\"aut\\\"]\",
+    \"membership_level\": \"sed\",
+    \"reputation_score\": 17,
+    \"avg_rating\": 185.094,
+    \"experience\": \"dolores\",
+    \"hire_count\": 10,
+    \"group_type\": 8,
+    \"group_members\": \"[\\\"dolorem\\\",\\\"sint\\\"]\",
+    \"certifications\": \"[\\\"molestiae\\\",\\\"sint\\\"]\",
+    \"languages\": \"[\\\"rerum\\\",\\\"commodi\\\"]\",
+    \"approval_status\": 4,
     \"categories\": [
-        20
+        15
     ],
     \"services\": [
-        11
+        19
     ]
 }"
 </code></pre></div>
@@ -3766,23 +3771,23 @@ const headers = {
 };
 
 let body = {
-    "about": "soluta",
-    "tools": "[\"quo\",\"ipsa\"]",
-    "membership_level": "sint",
-    "reputation_score": 9,
-    "avg_rating": 177190261.32,
-    "experience": "eos",
-    "hire_count": 5,
-    "group_type": 12,
-    "group_members": "[\"est\",\"nisi\"]",
-    "certifications": "[\"rerum\",\"expedita\"]",
-    "languages": "[\"quos\",\"sed\"]",
-    "approval_status": 15,
+    "about": "impedit",
+    "tools": "[\"et\",\"aut\"]",
+    "membership_level": "sed",
+    "reputation_score": 17,
+    "avg_rating": 185.094,
+    "experience": "dolores",
+    "hire_count": 10,
+    "group_type": 8,
+    "group_members": "[\"dolorem\",\"sint\"]",
+    "certifications": "[\"molestiae\",\"sint\"]",
+    "languages": "[\"rerum\",\"commodi\"]",
+    "approval_status": 4,
     "categories": [
-        20
+        15
     ],
     "services": [
-        11
+        19
     ]
 };
 
@@ -3895,10 +3900,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="about"                data-endpoint="PUTapi-handymen--id-"
-               value="soluta"
+               value="impedit"
                data-component="body">
     <br>
-<p>Example: <code>soluta</code></p>
+<p>Example: <code>impedit</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>tools</code></b>&nbsp;&nbsp;
@@ -3906,10 +3911,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="tools"                data-endpoint="PUTapi-handymen--id-"
-               value="["quo","ipsa"]"
+               value="["et","aut"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["quo","ipsa"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["et","aut"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>membership_level</code></b>&nbsp;&nbsp;
@@ -3917,10 +3922,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="membership_level"                data-endpoint="PUTapi-handymen--id-"
-               value="sint"
+               value="sed"
                data-component="body">
     <br>
-<p>Example: <code>sint</code></p>
+<p>Example: <code>sed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reputation_score</code></b>&nbsp;&nbsp;
@@ -3928,10 +3933,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="reputation_score"                data-endpoint="PUTapi-handymen--id-"
-               value="9"
+               value="17"
                data-component="body">
     <br>
-<p>Example: <code>9</code></p>
+<p>Example: <code>17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>avg_rating</code></b>&nbsp;&nbsp;
@@ -3939,10 +3944,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="avg_rating"                data-endpoint="PUTapi-handymen--id-"
-               value="177190261.32"
+               value="185.094"
                data-component="body">
     <br>
-<p>Example: <code>177190261.32</code></p>
+<p>Example: <code>185.094</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>experience</code></b>&nbsp;&nbsp;
@@ -3950,10 +3955,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="experience"                data-endpoint="PUTapi-handymen--id-"
-               value="eos"
+               value="dolores"
                data-component="body">
     <br>
-<p>Example: <code>eos</code></p>
+<p>Example: <code>dolores</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hire_count</code></b>&nbsp;&nbsp;
@@ -3961,10 +3966,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hire_count"                data-endpoint="PUTapi-handymen--id-"
-               value="5"
+               value="10"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>group_type</code></b>&nbsp;&nbsp;
@@ -3972,10 +3977,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="group_type"                data-endpoint="PUTapi-handymen--id-"
-               value="12"
+               value="8"
                data-component="body">
     <br>
-<p>Example: <code>12</code></p>
+<p>Example: <code>8</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>group_members</code></b>&nbsp;&nbsp;
@@ -3983,10 +3988,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="group_members"                data-endpoint="PUTapi-handymen--id-"
-               value="["est","nisi"]"
+               value="["dolorem","sint"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["est","nisi"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["dolorem","sint"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>certifications</code></b>&nbsp;&nbsp;
@@ -3994,10 +3999,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="certifications"                data-endpoint="PUTapi-handymen--id-"
-               value="["rerum","expedita"]"
+               value="["molestiae","sint"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["rerum","expedita"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["molestiae","sint"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>languages</code></b>&nbsp;&nbsp;
@@ -4005,10 +4010,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="languages"                data-endpoint="PUTapi-handymen--id-"
-               value="["quos","sed"]"
+               value="["rerum","commodi"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["quos","sed"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["rerum","commodi"]</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>approval_status</code></b>&nbsp;&nbsp;
@@ -4016,10 +4021,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="approval_status"                data-endpoint="PUTapi-handymen--id-"
-               value="15"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>15</code></p>
+<p>Example: <code>4</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>categories</code></b>&nbsp;&nbsp;
@@ -5019,11 +5024,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"user_id\": 5,
-    \"handyman_id\": 15,
-    \"quote_details\": \"iusto\",
-    \"price\": 8,
-    \"acceptance_status\": 4
+    \"user_id\": 4,
+    \"handyman_id\": 18,
+    \"quote_details\": \"amet\",
+    \"price\": 7,
+    \"acceptance_status\": 6
 }"
 </code></pre></div>
 
@@ -5040,11 +5045,11 @@ const headers = {
 };
 
 let body = {
-    "user_id": 5,
-    "handyman_id": 15,
-    "quote_details": "iusto",
-    "price": 8,
-    "acceptance_status": 4
+    "user_id": 4,
+    "handyman_id": 18,
+    "quote_details": "amet",
+    "price": 7,
+    "acceptance_status": 6
 };
 
 fetch(url, {
@@ -5144,10 +5149,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-quotes"
-               value="5"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>Example: <code>4</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>handyman_id</code></b>&nbsp;&nbsp;
@@ -5155,10 +5160,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="handyman_id"                data-endpoint="POSTapi-quotes"
-               value="15"
+               value="18"
                data-component="body">
     <br>
-<p>Example: <code>15</code></p>
+<p>Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quote_details</code></b>&nbsp;&nbsp;
@@ -5166,10 +5171,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="quote_details"                data-endpoint="POSTapi-quotes"
-               value="iusto"
+               value="amet"
                data-component="body">
     <br>
-<p>Example: <code>iusto</code></p>
+<p>Example: <code>amet</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -5177,10 +5182,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="price"                data-endpoint="POSTapi-quotes"
-               value="8"
+               value="7"
                data-component="body">
     <br>
-<p>Example: <code>8</code></p>
+<p>Example: <code>7</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>acceptance_status</code></b>&nbsp;&nbsp;
@@ -5188,10 +5193,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="acceptance_status"                data-endpoint="POSTapi-quotes"
-               value="4"
+               value="6"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>6</code></p>
         </div>
         </form>
 
@@ -5213,11 +5218,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"user_id\": 11,
-    \"handyman_id\": 17,
-    \"quote_details\": \"iste\",
+    \"user_id\": 18,
+    \"handyman_id\": 16,
+    \"quote_details\": \"exercitationem\",
     \"price\": 6,
-    \"acceptance_status\": 18
+    \"acceptance_status\": 4
 }"
 </code></pre></div>
 
@@ -5234,11 +5239,11 @@ const headers = {
 };
 
 let body = {
-    "user_id": 11,
-    "handyman_id": 17,
-    "quote_details": "iste",
+    "user_id": 18,
+    "handyman_id": 16,
+    "quote_details": "exercitationem",
     "price": 6,
-    "acceptance_status": 18
+    "acceptance_status": 4
 };
 
 fetch(url, {
@@ -5350,10 +5355,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="PUTapi-quotes--id-"
-               value="11"
+               value="18"
                data-component="body">
     <br>
-<p>Example: <code>11</code></p>
+<p>Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>handyman_id</code></b>&nbsp;&nbsp;
@@ -5361,10 +5366,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="handyman_id"                data-endpoint="PUTapi-quotes--id-"
-               value="17"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>17</code></p>
+<p>Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quote_details</code></b>&nbsp;&nbsp;
@@ -5372,10 +5377,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="quote_details"                data-endpoint="PUTapi-quotes--id-"
-               value="iste"
+               value="exercitationem"
                data-component="body">
     <br>
-<p>Example: <code>iste</code></p>
+<p>Example: <code>exercitationem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -5394,10 +5399,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="acceptance_status"                data-endpoint="PUTapi-quotes--id-"
-               value="18"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>18</code></p>
+<p>Example: <code>4</code></p>
         </div>
         </form>
 
@@ -6077,11 +6082,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"user_id\": 10,
-    \"reportable_id\": 13,
-    \"reportable_type\": \"qui\",
-    \"reason\": \"nobis\",
-    \"report_status\": 12
+    \"user_id\": 2,
+    \"reportable_id\": 9,
+    \"reportable_type\": \"suscipit\",
+    \"reason\": \"natus\",
+    \"report_status\": 6
 }"
 </code></pre></div>
 
@@ -6098,11 +6103,11 @@ const headers = {
 };
 
 let body = {
-    "user_id": 10,
-    "reportable_id": 13,
-    "reportable_type": "qui",
-    "reason": "nobis",
-    "report_status": 12
+    "user_id": 2,
+    "reportable_id": 9,
+    "reportable_type": "suscipit",
+    "reason": "natus",
+    "report_status": 6
 };
 
 fetch(url, {
@@ -6202,10 +6207,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-reports"
-               value="10"
+               value="2"
                data-component="body">
     <br>
-<p>Example: <code>10</code></p>
+<p>Example: <code>2</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reportable_id</code></b>&nbsp;&nbsp;
@@ -6213,10 +6218,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="reportable_id"                data-endpoint="POSTapi-reports"
-               value="13"
+               value="9"
                data-component="body">
     <br>
-<p>Example: <code>13</code></p>
+<p>Example: <code>9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reportable_type</code></b>&nbsp;&nbsp;
@@ -6224,10 +6229,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="reportable_type"                data-endpoint="POSTapi-reports"
-               value="qui"
+               value="suscipit"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>suscipit</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -6235,10 +6240,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-reports"
-               value="nobis"
+               value="natus"
                data-component="body">
     <br>
-<p>Example: <code>nobis</code></p>
+<p>Example: <code>natus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>report_status</code></b>&nbsp;&nbsp;
@@ -6246,10 +6251,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="report_status"                data-endpoint="POSTapi-reports"
-               value="12"
+               value="6"
                data-component="body">
     <br>
-<p>Example: <code>12</code></p>
+<p>Example: <code>6</code></p>
         </div>
         </form>
 
@@ -6271,11 +6276,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"user_id\": 3,
-    \"reportable_id\": 7,
-    \"reportable_type\": \"et\",
-    \"reason\": \"qui\",
-    \"report_status\": 20
+    \"user_id\": 15,
+    \"reportable_id\": 12,
+    \"reportable_type\": \"quia\",
+    \"reason\": \"aut\",
+    \"report_status\": 3
 }"
 </code></pre></div>
 
@@ -6292,11 +6297,11 @@ const headers = {
 };
 
 let body = {
-    "user_id": 3,
-    "reportable_id": 7,
-    "reportable_type": "et",
-    "reason": "qui",
-    "report_status": 20
+    "user_id": 15,
+    "reportable_id": 12,
+    "reportable_type": "quia",
+    "reason": "aut",
+    "report_status": 3
 };
 
 fetch(url, {
@@ -6408,10 +6413,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="PUTapi-reports--id-"
-               value="3"
+               value="15"
                data-component="body">
     <br>
-<p>Example: <code>3</code></p>
+<p>Example: <code>15</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reportable_id</code></b>&nbsp;&nbsp;
@@ -6419,10 +6424,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="reportable_id"                data-endpoint="PUTapi-reports--id-"
-               value="7"
+               value="12"
                data-component="body">
     <br>
-<p>Example: <code>7</code></p>
+<p>Example: <code>12</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reportable_type</code></b>&nbsp;&nbsp;
@@ -6430,10 +6435,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="reportable_type"                data-endpoint="PUTapi-reports--id-"
-               value="et"
+               value="quia"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>quia</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -6441,10 +6446,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="PUTapi-reports--id-"
-               value="qui"
+               value="aut"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>aut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>report_status</code></b>&nbsp;&nbsp;
@@ -6452,10 +6457,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="report_status"                data-endpoint="PUTapi-reports--id-"
-               value="20"
+               value="3"
                data-component="body">
     <br>
-<p>Example: <code>20</code></p>
+<p>Example: <code>3</code></p>
         </div>
         </form>
 
@@ -7709,12 +7714,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"user_id\": 4,
-    \"handyman_id\": 4,
-    \"rating\": 14,
-    \"review\": \"fuga\",
-    \"edited\": false,
-    \"requested\": true
+    \"user_id\": 15,
+    \"handyman_id\": 17,
+    \"rating\": 1,
+    \"review\": \"temporibus\",
+    \"edited\": true,
+    \"requested\": false
 }"
 </code></pre></div>
 
@@ -7731,12 +7736,12 @@ const headers = {
 };
 
 let body = {
-    "user_id": 4,
-    "handyman_id": 4,
-    "rating": 14,
-    "review": "fuga",
-    "edited": false,
-    "requested": true
+    "user_id": 15,
+    "handyman_id": 17,
+    "rating": 1,
+    "review": "temporibus",
+    "edited": true,
+    "requested": false
 };
 
 fetch(url, {
@@ -7836,10 +7841,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-reviews"
-               value="4"
+               value="15"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>15</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>handyman_id</code></b>&nbsp;&nbsp;
@@ -7847,10 +7852,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="handyman_id"                data-endpoint="POSTapi-reviews"
-               value="4"
+               value="17"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rating</code></b>&nbsp;&nbsp;
@@ -7858,10 +7863,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="rating"                data-endpoint="POSTapi-reviews"
-               value="14"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>14</code></p>
+<p>Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>review</code></b>&nbsp;&nbsp;
@@ -7869,10 +7874,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="review"                data-endpoint="POSTapi-reviews"
-               value="fuga"
+               value="temporibus"
                data-component="body">
     <br>
-<p>Example: <code>fuga</code></p>
+<p>Example: <code>temporibus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>edited</code></b>&nbsp;&nbsp;
@@ -7893,7 +7898,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>requested</code></b>&nbsp;&nbsp;
@@ -7914,7 +7919,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -7936,8 +7941,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"rating\": 8,
-    \"review\": \"qui\"
+    \"rating\": 19,
+    \"review\": \"molestias\"
 }"
 </code></pre></div>
 
@@ -7954,8 +7959,8 @@ const headers = {
 };
 
 let body = {
-    "rating": 8,
-    "review": "qui"
+    "rating": 19,
+    "review": "molestias"
 };
 
 fetch(url, {
@@ -8067,10 +8072,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="rating"                data-endpoint="PUTapi-reviews--id-"
-               value="8"
+               value="19"
                data-component="body">
     <br>
-<p>Example: <code>8</code></p>
+<p>Example: <code>19</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>review</code></b>&nbsp;&nbsp;
@@ -8078,10 +8083,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="review"                data-endpoint="PUTapi-reviews--id-"
-               value="qui"
+               value="molestias"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>molestias</code></p>
         </div>
         </form>
 
@@ -10016,7 +10021,7 @@ access-control-allow-origin: *
         &quot;path&quot;: &quot;http://localhost/api/yardsales&quot;,
         &quot;per_page&quot;: 15,
         &quot;to&quot;: 15,
-        &quot;total&quot;: 20
+        &quot;total&quot;: 21
     }
 }</code>
  </pre>
@@ -10274,11 +10279,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"title\": \"hic\",
-    \"description\": \"Consequatur architecto dolorum sint sunt.\",
-    \"location\": \"veritatis\",
-    \"date\": \"2024-02-28T10:11:54\",
-    \"items\": \"[\\\"tempora\\\",\\\"dolores\\\"]\"
+    \"user_id\": 13,
+    \"title\": \"accusamus\",
+    \"description\": \"Voluptatem recusandae eum facilis qui cum ipsa.\",
+    \"location\": \"facilis\",
+    \"date\": \"2024-02-28T12:12:18\",
+    \"items\": \"[\\\"explicabo\\\",\\\"beatae\\\"]\"
 }"
 </code></pre></div>
 
@@ -10295,11 +10301,12 @@ const headers = {
 };
 
 let body = {
-    "title": "hic",
-    "description": "Consequatur architecto dolorum sint sunt.",
-    "location": "veritatis",
-    "date": "2024-02-28T10:11:54",
-    "items": "[\"tempora\",\"dolores\"]"
+    "user_id": 13,
+    "title": "accusamus",
+    "description": "Voluptatem recusandae eum facilis qui cum ipsa.",
+    "location": "facilis",
+    "date": "2024-02-28T12:12:18",
+    "items": "[\"explicabo\",\"beatae\"]"
 };
 
 fetch(url, {
@@ -10394,15 +10401,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="user_id"                data-endpoint="POSTapi-yardsales"
+               value="13"
+               data-component="body">
+    <br>
+<p>Example: <code>13</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="POSTapi-yardsales"
-               value="hic"
+               value="accusamus"
                data-component="body">
     <br>
-<p>Example: <code>hic</code></p>
+<p>Example: <code>accusamus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -10410,10 +10428,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-yardsales"
-               value="Consequatur architecto dolorum sint sunt."
+               value="Voluptatem recusandae eum facilis qui cum ipsa."
                data-component="body">
     <br>
-<p>Example: <code>Consequatur architecto dolorum sint sunt.</code></p>
+<p>Example: <code>Voluptatem recusandae eum facilis qui cum ipsa.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>location</code></b>&nbsp;&nbsp;
@@ -10421,10 +10439,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="location"                data-endpoint="POSTapi-yardsales"
-               value="veritatis"
+               value="facilis"
                data-component="body">
     <br>
-<p>Example: <code>veritatis</code></p>
+<p>Example: <code>facilis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -10432,10 +10450,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="POSTapi-yardsales"
-               value="2024-02-28T10:11:54"
+               value="2024-02-28T12:12:18"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2024-02-28T10:11:54</code></p>
+<p>Must be a valid date. Example: <code>2024-02-28T12:12:18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>items</code></b>&nbsp;&nbsp;
@@ -10443,10 +10461,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="items"                data-endpoint="POSTapi-yardsales"
-               value="["tempora","dolores"]"
+               value="["explicabo","beatae"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["tempora","dolores"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["explicabo","beatae"]</code></p>
         </div>
         </form>
 
@@ -10468,11 +10486,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer 2|1l5sgkTLPQNm4lialJohll95J3P04uNIVorQzPJs5ac51589" \
     --data "{
-    \"title\": \"quis\",
-    \"description\": \"Quo quo ducimus repellendus vel autem dolorum reprehenderit.\",
-    \"location\": \"itaque\",
-    \"date\": \"2024-02-28T10:11:54\",
-    \"items\": \"[\\\"sit\\\",\\\"ut\\\"]\"
+    \"user_id\": 7,
+    \"title\": \"voluptas\",
+    \"description\": \"Et rem aperiam vel architecto deleniti fugiat quis explicabo.\",
+    \"location\": \"corporis\",
+    \"date\": \"2024-02-28T12:12:18\",
+    \"items\": \"[\\\"qui\\\",\\\"quia\\\"]\"
 }"
 </code></pre></div>
 
@@ -10489,11 +10508,12 @@ const headers = {
 };
 
 let body = {
-    "title": "quis",
-    "description": "Quo quo ducimus repellendus vel autem dolorum reprehenderit.",
-    "location": "itaque",
-    "date": "2024-02-28T10:11:54",
-    "items": "[\"sit\",\"ut\"]"
+    "user_id": 7,
+    "title": "voluptas",
+    "description": "Et rem aperiam vel architecto deleniti fugiat quis explicabo.",
+    "location": "corporis",
+    "date": "2024-02-28T12:12:18",
+    "items": "[\"qui\",\"quia\"]"
 };
 
 fetch(url, {
@@ -10600,15 +10620,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="user_id"                data-endpoint="PUTapi-yardsales--id-"
+               value="7"
+               data-component="body">
+    <br>
+<p>Example: <code>7</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="PUTapi-yardsales--id-"
-               value="quis"
+               value="voluptas"
                data-component="body">
     <br>
-<p>Example: <code>quis</code></p>
+<p>Example: <code>voluptas</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -10616,10 +10647,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-yardsales--id-"
-               value="Quo quo ducimus repellendus vel autem dolorum reprehenderit."
+               value="Et rem aperiam vel architecto deleniti fugiat quis explicabo."
                data-component="body">
     <br>
-<p>Example: <code>Quo quo ducimus repellendus vel autem dolorum reprehenderit.</code></p>
+<p>Example: <code>Et rem aperiam vel architecto deleniti fugiat quis explicabo.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>location</code></b>&nbsp;&nbsp;
@@ -10627,10 +10658,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="location"                data-endpoint="PUTapi-yardsales--id-"
-               value="itaque"
+               value="corporis"
                data-component="body">
     <br>
-<p>Example: <code>itaque</code></p>
+<p>Example: <code>corporis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -10638,10 +10669,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="PUTapi-yardsales--id-"
-               value="2024-02-28T10:11:54"
+               value="2024-02-28T12:12:18"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2024-02-28T10:11:54</code></p>
+<p>Must be a valid date. Example: <code>2024-02-28T12:12:18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>items</code></b>&nbsp;&nbsp;
@@ -10649,10 +10680,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="items"                data-endpoint="PUTapi-yardsales--id-"
-               value="["sit","ut"]"
+               value="["qui","quia"]"
                data-component="body">
     <br>
-<p>Must be a valid JSON string. Example: <code>["sit","ut"]</code></p>
+<p>Must be a valid JSON string. Example: <code>["qui","quia"]</code></p>
         </div>
         </form>
 

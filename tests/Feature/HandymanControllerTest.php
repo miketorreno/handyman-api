@@ -141,16 +141,17 @@ class HandymanControllerTest extends TestCase
             ->assertJsonPath('data.0.user.id', $user->id);
     }
 
-    // public function test_returns_number_of_reviews()
-    // {
-    //     $handyman = Handyman::factory()->create();
-    //     Review::factory(4)->for($handyman)->create();
+    public function test_returns_number_of_reviews()
+    {
+        $handyman = Handyman::factory()->create();
+        Review::factory(4)->for($handyman)->create();
 
-    //     $response = $this->getJson('/api/handymen');
+        $response = $this->getJson('/api/handymen');
+        // dd($response);
 
-    //     $response->assertOk()
-    //         ->assertJsonPath('data.0.reviews_count', 4);
-    // }
+        $response->assertOk()
+            ->assertJsonPath('data.0.reviews_count', 4);
+    }
     
     public function test_shows_a_single_handyman()
     {
@@ -163,13 +164,13 @@ class HandymanControllerTest extends TestCase
 
         $response = $this->getJson('/api/handymen/'.$handyman->id);
         
-        $response->assertOk();
-            // ->assertJsonCount(1, 'data.reviews')
-            // ->assertJsonCount(1, 'data.quotes')
-            // ->assertJsonCount(1, 'data.services')
-            // ->assertJsonCount(1, 'data.categories')
-            // ->assertJsonPath('data.subscription_type.id', $subscriptionType->id)
-            // ->assertJsonPath('data.user.id', $user->id);
+        $response->assertOk()
+            ->assertJsonCount(1, 'data.reviews')
+            ->assertJsonCount(1, 'data.quotes')
+            ->assertJsonCount(1, 'data.services')
+            ->assertJsonCount(1, 'data.categories')
+            ->assertJsonPath('data.subscription_type.id', $subscriptionType->id)
+            ->assertJsonPath('data.user.id', $user->id);
     }
 
     public function test_can_create_handyman()
@@ -229,14 +230,14 @@ class HandymanControllerTest extends TestCase
             'categories' => [$categories[0]->id, $anotherCategory->id]
         ]);
 
-        $response->assertOk();
-            // ->assertJsonCount(2, 'data.categories')
-            // ->assertJsonCount(2, 'data.services')
-            // ->assertJsonPath('data.categories.0.id', $categories[0]->id)
-            // ->assertJsonPath('data.categories.1.id', $anotherCategory->id)
-            // ->assertJsonPath('data.services.0.id', $services[0]->id)
-            // ->assertJsonPath('data.services.1.id', $anotherService->id)
-            // ->assertJsonPath('data.about', 'Updated Handyman');
+        $response->assertOk()
+            ->assertJsonCount(2, 'data.categories')
+            ->assertJsonCount(2, 'data.services')
+            ->assertJsonPath('data.categories.0.id', $categories[0]->id)
+            ->assertJsonPath('data.categories.1.id', $anotherCategory->id)
+            ->assertJsonPath('data.services.0.id', $services[0]->id)
+            ->assertJsonPath('data.services.1.id', $anotherService->id)
+            ->assertJsonPath('data.about', 'Updated Handyman');
         
         // Notification::assertSentTo($admin, UpdateHandymanNotification::class);
         // ! Failing to assert the notification is saved to database
