@@ -21,9 +21,9 @@ class HandymanFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory(['role' => User::HANDYMAN]),
             'image_id' => null,
-            'subscription_type_id' => SubscriptionType::factory(),
+            'subscription_type_id' => null,
             'about' => fake()->paragraph(),
             // 'tools' => fake()->paragraph(),  // * json()
             'membership_level' => fake()->word(),

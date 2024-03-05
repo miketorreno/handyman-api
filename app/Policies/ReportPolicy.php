@@ -13,7 +13,7 @@ class ReportPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ReportPolicy
      */
     public function view(User $user, Report $report): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ReportPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ReportPolicy
      */
     public function update(User $user, Report $report): bool
     {
-        return ($user->id == $report->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
+        return ($user->id == $report->user_id) || ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +45,7 @@ class ReportPolicy
      */
     public function delete(User $user, Report $report): bool
     {
-        return ($user->id == $report->user_id) || ($user->role == Handyman::ADMIN) || ($user->role == Handyman::SUPER_ADMIN);
+        return ($user->id == $report->user_id) || ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 
     /**
@@ -53,7 +53,7 @@ class ReportPolicy
      */
     public function restore(User $user, Report $report): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
     }
 
     /**
@@ -61,6 +61,26 @@ class ReportPolicy
      */
     public function forceDelete(User $user, Report $report): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function deleteAny(User $user): bool
+    {
+        return ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
+    }
+
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function restoreAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function reorder(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
     }
 }

@@ -13,7 +13,7 @@ class SubscriptionTypePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class SubscriptionTypePolicy
      */
     public function view(User $user, SubscriptionType $subscriptionType): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class SubscriptionTypePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
     }
 
     /**
@@ -37,7 +37,7 @@ class SubscriptionTypePolicy
      */
     public function update(User $user, SubscriptionType $subscriptionType): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
     }
 
     /**
@@ -45,7 +45,7 @@ class SubscriptionTypePolicy
      */
     public function delete(User $user, SubscriptionType $subscriptionType): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
     }
 
     /**
@@ -53,7 +53,7 @@ class SubscriptionTypePolicy
      */
     public function restore(User $user, SubscriptionType $subscriptionType): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
     }
 
     /**
@@ -61,6 +61,26 @@ class SubscriptionTypePolicy
      */
     public function forceDelete(User $user, SubscriptionType $subscriptionType): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function deleteAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function restoreAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function reorder(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
     }
 }

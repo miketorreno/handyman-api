@@ -24,6 +24,7 @@ class SubscriptionType extends Model
     ];
 
     protected $casts = [
+        'price' => 'integer',
     ];
 
     public function handymen(): HasMany

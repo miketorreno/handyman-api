@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('benefits');
-            $table->string('price');
+            $table->integer('price');
             $table->string('duration');
             $table->timestamps();
         });

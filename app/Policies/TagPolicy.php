@@ -13,7 +13,7 @@ class TagPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class TagPolicy
      */
     public function view(User $user, Tag $tag): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class TagPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 
     /**
@@ -37,7 +37,7 @@ class TagPolicy
      */
     public function update(User $user, Tag $tag): bool
     {
-        //
+        return ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 
     /**
@@ -45,7 +45,7 @@ class TagPolicy
      */
     public function delete(User $user, Tag $tag): bool
     {
-        //
+        return ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 
     /**
@@ -53,7 +53,7 @@ class TagPolicy
      */
     public function restore(User $user, Tag $tag): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
     }
 
     /**
@@ -61,6 +61,26 @@ class TagPolicy
      */
     public function forceDelete(User $user, Tag $tag): bool
     {
-        //
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function deleteAny(User $user): bool
+    {
+        return ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
+    }
+
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function restoreAny(User $user): bool
+    {
+        return $user->role == User::SUPER_ADMIN;
+    }
+
+    public function reorder(User $user): bool
+    {
+        return ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 }

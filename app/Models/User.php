@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Panel;
 use App\Models\Event;
 use App\Models\Report;
 use App\Models\Review;
@@ -10,12 +11,13 @@ use App\Models\Handyman;
 use App\Models\YardSale;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -34,6 +36,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'location',
+        'language',
     ];
 
     /**
@@ -54,7 +59,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'role' => 'integer',
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return ($this->role == User::ADMIN) || ($this->role == User::SUPER_ADMIN);
+    }
 
     public function handyman(): HasOne
     {

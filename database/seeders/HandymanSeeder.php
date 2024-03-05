@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Handyman;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class HandymanSeeder extends Seeder
 {
@@ -12,6 +14,12 @@ class HandymanSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Handyman::factory()->create([
+            'user_id' => User::factory([
+                'name' => 'Test Handyman',
+                'email' => 'handyman@handyman.com',
+                'role' => User::HANDYMAN,
+            ]),
+        ]);
     }
 }
