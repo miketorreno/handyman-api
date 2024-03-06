@@ -37,7 +37,7 @@ class QuotePolicy
      */
     public function update(User $user, Quote $quote): bool
     {
-        return ($user->id == $quote->user_id) || ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
+        return ($quote->requested == true && $user->id == $quote->handyman_id) || ($user->id == $quote->user_id) || ($user->role == User::ADMIN) || ($user->role == User::SUPER_ADMIN);
     }
 
     /**

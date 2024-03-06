@@ -43,6 +43,7 @@ class Handyman extends User
         'group_members',
         'certifications',
         'languages',
+        'contact',
         'approval_status',
         'banned_at',
     ];
@@ -56,6 +57,7 @@ class Handyman extends User
         'approval_status' => 'integer',
         'tools' => 'array',
         'languages' => 'array',
+        'contact' => 'array',
         'banned_at' => 'datetime',
     ];
     

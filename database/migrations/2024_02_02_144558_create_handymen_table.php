@@ -27,6 +27,7 @@ return new class extends Migration
             $table->json('group_members')->nullable();
             $table->json('certifications')->nullable();
             $table->json('languages')->nullable();
+            $table->json('contact')->nullable();
             $table->tinyInteger('approval_status')->default(1);
             $table->timestamps();
             $table->timestamp('banned_at')->nullable();

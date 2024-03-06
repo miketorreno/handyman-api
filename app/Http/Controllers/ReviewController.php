@@ -126,4 +126,37 @@ class ReviewController extends Controller
 
         $review->delete();
     }
+
+    public function request(StoreReviewRequest $request)
+    {
+        $review = Review::create(array_merge([
+            'requested' => true
+        ], $request->validated()));
+
+        return ReviewResource::make(
+            $review->load(['user', 'handyman'])
+        );
+    }
+
+    public function respond(UpdateReviewRequest $request, Review $review)
+    {
+        abort_unless(auth()->user()->tokenCan('review.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $review);
+
+        if ($review->requested == false) {
+            return response([
+                'message' => 'Not requested'
+            ], 400);
+        }
+
+        $review->update(
+            $request->validated()
+        );
+
+        return ReviewResource::make(
+            $review->load(['user', 'handyman'])
+        );
+    }
 }

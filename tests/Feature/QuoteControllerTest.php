@@ -55,9 +55,7 @@ class QuoteControllerTest extends TestCase
 
     public function test_can_create_a_quote()
     {
-        // $this->withoutExceptionHandling();
         $user = User::factory()->create();
-        // $quote = Quote::factory()->for($user)->create();
 
         $this->actingAs($user);
 
@@ -72,6 +70,62 @@ class QuoteControllerTest extends TestCase
             'id' => $response->json('data.id')
         ]);
     }
+
+    public function test_can_request_for_a_quote()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->postJson('/api/quotes/client/'.$user->id, Quote::factory()->raw([
+            'user_id' => $user->id,
+        ]));
+
+        $response->assertCreated()
+            ->assertJsonPath('data.user.id', $user->id)
+            ->assertJsonPath('data.requested', true);
+
+        $this->assertDatabaseHas('quotes', [
+            'id' => $response->json('data.id')
+        ]);
+    }
+
+    public function test_can_respond_to_a_quote()
+    {
+        $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->create();
+        // $quote = Quote::factory()->for($user)->for($handyman)->create();
+        $quote = Quote::factory()->for($user)->for($handyman)->create(['requested' => true]);
+
+        $this->actingAs($handyman);
+
+        $response = $this->putJson('/api/quotes/'.$quote->id.'/respond', [
+            'price' => 12345,
+        ]);
+
+        $response->assertOk()
+            ->assertJsonPath('data.price', 12345);
+    }
+
+    // public function test_can_not_respond_to_a_quote_that_is_not_requested()
+    // {
+    //     $this->withoutExceptionHandling();
+    //     $user = User::factory()->create();
+    //     $handyman = Handyman::factory()->create();
+    //     // $quote = Quote::factory()->for($user)->for($handyman)->create();
+    //     $quote = Quote::factory()->for($user)->for($handyman)->create();
+
+    //     $this->actingAs($handyman);
+
+    //     $response = $this->putJson('/api/quotes/'.$quote->id.'/respond', [
+    //         'price' => 12345,
+    //     ]);
+
+    //     // * fluctuates between 400 & 403
+    //     $response->assertStatus(403);
+    //     $response->assertStatus(400);
+    // }
 
     public function test_can_update_a_quote()
     {

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\ReportController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\SubscriptionTypeController;
 */
 
 Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+Route::post('/register', [AuthController::class, 'register'])->name('api.register');
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:sanctum')
     ->name('api.logout');
@@ -91,6 +93,13 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])
     ->middleware(['auth:sanctum'])
     ->name('reviews.destroy');
 
+Route::post('/reviews/request', [ReviewController::class, 'request'])
+    ->middleware(['auth:sanctum'])
+    ->name('reviews.request');
+Route::put('/reviews/{review}/respond', [ReviewController::class, 'respond'])
+    ->middleware(['auth:sanctum'])
+    ->name('reviews.respond');
+
 
 // * Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
@@ -108,14 +117,14 @@ Route::delete('/events/{event}', [EventController::class, 'destroy'])
 
 // * Yard Sales
 Route::get('/yardsales', [YardSaleController::class, 'index'])->name('yardsales.index');
-Route::get('/yardsales/{yardsale}', [YardSaleController::class, 'show'])->name('yardsales.show');
+Route::get('/yardsales/{yardSale}', [YardSaleController::class, 'show'])->name('yardsales.show');
 Route::post('/yardsales', [YardSaleController::class, 'store'])
     ->middleware(['auth:sanctum'])
     ->name('yardsales.store');
-Route::put('/yardsales/{yardsale}', [YardSaleController::class, 'update'])
+Route::put('/yardsales/{yardSale}', [YardSaleController::class, 'update'])
     ->middleware(['auth:sanctum'])
     ->name('yardsales.update');
-Route::delete('/yardsales/{yardsale}', [YardSaleController::class, 'destroy'])
+Route::delete('/yardsales/{yardSale}', [YardSaleController::class, 'destroy'])
     ->middleware(['auth:sanctum'])
     ->name('yardsales.destroy');
 
@@ -146,3 +155,24 @@ Route::put('/quotes/{quote}', [QuoteController::class, 'update'])
 Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])
     ->middleware(['auth:sanctum'])
     ->name('quotes.destroy');
+
+Route::post('/quotes/client/{clientId}', [QuoteController::class, 'request'])
+    ->middleware(['auth:sanctum'])
+    ->name('quotes.request');
+Route::put('/quotes/{quote}/respond', [QuoteController::class, 'respond'])
+    ->middleware(['auth:sanctum'])
+    ->name('quotes.respond');
+
+
+// * Blog Posts
+Route::get('/blogposts', [PostController::class, 'index'])->name('blogposts.index');
+Route::get('/blogposts/{post}', [PostController::class, 'show'])->name('blogposts.show');
+Route::post('/blogposts', [PostController::class, 'store'])
+    ->middleware(['auth:sanctum'])
+    ->name('blogposts.store');
+Route::put('/blogposts/{post}', [PostController::class, 'update'])
+    ->middleware(['auth:sanctum'])
+    ->name('blogposts.update');
+Route::delete('/blogposts/{post}', [PostController::class, 'destroy'])
+    ->middleware(['auth:sanctum'])
+    ->name('blogposts.destroy');

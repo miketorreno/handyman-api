@@ -35,6 +35,7 @@ class HandymanFactory extends Factory
             // 'group_members' => fake()->paragraph(),  // * json()
             // 'certifications' => fake()->paragraph(), // * json()
             // 'languages' => '{"0": "english", "1": "amharic"}',  // * json()
+            // 'contact' => '{"phone": "+251987654321", "email": "email@domain.com"}',  // * json()
             'languages' => json_encode('{"languages": [{ "lang":"english"},{"lang":"amharic"}]}'),  // * json()
             'approval_status' => Handyman::APPROVED,
         ];

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEventRequest extends FormRequest
+class StorePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,10 @@ class StoreEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'description' => ['string'],
-            'location' => ['string'],
-            'date_and_time' => ['required', 'date'],
-            'event_type' => ['integer'],
+            'user_id' => ['integer'],
+            'title' => ['string'],
+            'content' => ['string'],
+            'published_date' => ['date'],
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Resources\QuoteResource;
 use App\Http\Requests\StoreQuoteRequest;
@@ -99,5 +100,38 @@ class QuoteController extends Controller
         $this->authorize('delete', $quote);
 
         $quote->delete();
+    }
+
+    public function request(StoreQuoteRequest $request)
+    {
+        $quote = Quote::create(array_merge([
+            'requested' => true
+        ], $request->validated()));
+
+        return QuoteResource::make(
+            $quote->load(['user', 'handyman'])
+        );
+    }
+
+    public function respond(UpdateQuoteRequest $request, Quote $quote)
+    {
+        abort_unless(auth()->user()->tokenCan('quote.update'),
+            Response::HTTP_FORBIDDEN
+        );
+        $this->authorize('update', $quote);
+
+        if ($quote->requested == false) {
+            return response([
+                'message' => 'Not requested'
+            ], 400);
+        }
+
+        $quote->update(
+            $request->validated()
+        );
+
+        return QuoteResource::make(
+            $quote->load(['user', 'handyman'])
+        );
     }
 }

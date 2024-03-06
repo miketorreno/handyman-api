@@ -185,6 +185,59 @@ class ReviewControllerTest extends TestCase
             'id' => $response->json('data.id')
         ]);
     }
+
+    public function test_can_request_for_a_review()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->postJson('/api/reviews/request/', Review::factory()->raw([
+            'user_id' => $user->id,
+        ]));
+
+        $response->assertCreated()
+            ->assertJsonPath('data.user.id', $user->id)
+            ->assertJsonPath('data.requested', true);
+
+        $this->assertDatabaseHas('reviews', [
+            'id' => $response->json('data.id')
+        ]);
+    }
+
+    public function test_can_respond_to_a_review()
+    {
+        $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->create();
+        // $review = Review::factory()->for($user)->for($handyman)->create();
+        $review = Review::factory()->for($user)->for($handyman)->create(['requested' => true]);
+
+        $this->actingAs($user);
+
+        $response = $this->putJson('/api/reviews/'.$review->id.'/respond', [
+            'review' => 'updated review',
+        ]);
+
+        $response->assertOk()
+            ->assertJsonPath('data.review', 'updated review');
+    }
+
+    public function test_can_not_respond_to_a_review_that_is_not_requested()
+    {
+        $user = User::factory()->create();
+        $handyman = Handyman::factory()->create();
+        // $review = Review::factory()->for($user)->for($handyman)->create();
+        $review = Review::factory()->for($user)->for($handyman)->create();
+
+        $this->actingAs($user);
+
+        $response = $this->putJson('/api/reviews/'.$review->id.'/respond', [
+            'review' => 'updated review',
+        ]);
+
+        $response->assertStatus(400);
+    }
     
     public function test_can_update_a_review()
     {

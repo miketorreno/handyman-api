@@ -22,8 +22,12 @@ class UpdateReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => ['sometimes', 'integer'],
+            'handyman_id' => ['sometimes', 'integer'],
             'rating' => ['sometimes', 'integer'],
             'review' => ['sometimes', 'string'],
+            'edited' => ['sometimes', 'bool'],
+            'requested' => ['sometimes', 'bool'],
         ];
     }
 }

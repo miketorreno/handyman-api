@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use App\Models\Post;
 use App\Models\Event;
 use App\Models\Report;
 use App\Models\Review;
@@ -90,5 +91,10 @@ class User extends Authenticatable implements FilamentUser
     public function yardSales(): HasMany
     {
         return $this->hasMany(YardSale::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }

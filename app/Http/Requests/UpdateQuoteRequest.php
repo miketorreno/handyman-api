@@ -27,6 +27,7 @@ class UpdateQuoteRequest extends FormRequest
             'quote_details' => ['string'],
             'price' => ['integer'],
             'acceptance_status' => ['integer'],
+            'requested' => ['boolean'],
         ];
     }
 }

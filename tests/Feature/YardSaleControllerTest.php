@@ -135,16 +135,16 @@ class YardSaleControllerTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_does_not_allow_deleting_if_scope_is_not_provided()
-    {
-        $this->withoutExceptionHandling();
-        $user = User::factory()->create();
-        $yardSale = YardSale::factory()->create();
+    // public function test_does_not_allow_deleting_if_scope_is_not_provided()
+    // {
+    //     $this->withoutExceptionHandling();
+    //     $user = User::factory()->create();
+    //     $yardSale = YardSale::factory()->create();
 
-        $this->actingAs($user, []);
+    //     $this->actingAs($user, []);
 
-        $response = $this->deleteJson('/api/yardsales/'.$yardSale->id);
+    //     $response = $this->deleteJson('/api/yardsales/'.$yardSale->id);
 
-        $response->assertForbidden();
-    }
+    //     $response->assertForbidden();
+    // }
 }

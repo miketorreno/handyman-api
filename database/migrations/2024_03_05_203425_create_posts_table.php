@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quotes', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
-            $table->foreignId('handyman_id')->index();
-            $table->text('quote_details');
-            $table->integer('price')->nullable();
-            $table->boolean('requested')->default(false);
-            $table->tinyInteger('acceptance_status')->default(1);
+            $table->string('title');
+            $table->text('content');
+            $table->timestamp('published_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('quotes');
+        Schema::dropIfExists('posts');
     }
 };
