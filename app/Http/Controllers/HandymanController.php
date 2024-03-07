@@ -24,6 +24,13 @@ class HandymanController extends Controller
      */
     public function index()
     {
+        validator(request()->all(), [
+            'location' => ['string', 'max:50'],
+            'language' => ['string', 'max:50'],
+            'categories' => ['array'],
+            'services' => ['array'],
+        ])->validate();
+
         $handymen = Handyman::query()
             ->where('approval_status', Handyman::APPROVED)
             ->when(request('location'), 

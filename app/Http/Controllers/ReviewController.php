@@ -24,6 +24,11 @@ class ReviewController extends Controller
      */
     public function index(Handyman $handyman)
     {
+        validator(request()->all(), [
+            'handyman' => ['integer'],
+            'user' => ['integer'],
+        ])->validate();
+
         $reviews = Review::query()
             ->when(request('handyman'),
                 fn($query) => $query->where('handyman_id', request('handyman'))

@@ -21,6 +21,10 @@ class YardSaleController extends Controller
      */
     public function index()
     {
+        validator(request()->all(), [
+            'user' => ['integer'],
+        ])->validate();
+
         $yardSales = YardSale::query()
             ->when(request('user'),
                 fn($query) => $query->where('user_id', request('user'))
