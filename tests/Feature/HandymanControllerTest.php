@@ -175,7 +175,7 @@ class HandymanControllerTest extends TestCase
 
     public function test_can_create_handyman()
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         // Notification::fake();
 
         // $admin = User::factory()->create(['role' => User::ADMIN]);
@@ -186,14 +186,15 @@ class HandymanControllerTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->postJson('/api/handymen', Handyman::factory()->raw([
+            'user_id' => $user->id,
             'categories' => $categories->pluck('id')->toArray(),
             'services' => $services->pluck('id')->toArray()
         ]));
 
         $response->assertCreated()
-            ->assertJsonPath('data.user.id', $user->id);
-            // ->assertJsonCount(2, 'data.services')
-            // ->assertJsonCount(2, 'data.categories');
+            ->assertJsonPath('data.user.id', $user->id)
+            ->assertJsonCount(2, 'data.services')
+            ->assertJsonCount(2, 'data.categories');
 
         $this->assertDatabaseHas('handymen', [
             'id' => $response->json('data.id')

@@ -50,14 +50,16 @@ class Handyman extends User
 
     protected $casts = [
         'avg_rating' => 'decimal:1',
-        'hidden' => 'bool',
+        'hidden' => 'boolean',
         'reputation_score' => 'integer',
         'hire_count' => 'integer',
         'group_type' => 'integer',
         'approval_status' => 'integer',
-        'tools' => 'array',
-        'languages' => 'array',
-        'contact' => 'array',
+        // 'tools' => 'array',
+        // 'group_members' => 'array',
+        // 'certifications' => 'array',
+        // 'languages' => 'array',
+        // 'contact' => 'array',
         'banned_at' => 'datetime',
     ];
     

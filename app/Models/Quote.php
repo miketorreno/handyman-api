@@ -29,7 +29,7 @@ class Quote extends Model
     protected $casts = [
         'price' => 'integer',
         'acceptance_status' => 'integer',
-        'requested' => 'bool',
+        'requested' => 'boolean',
     ];
 
     public function user(): BelongsTo

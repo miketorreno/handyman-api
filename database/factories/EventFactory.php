@@ -25,6 +25,7 @@ class EventFactory extends Factory
             'location' => fake()->address(),
             'date_and_time' => date('Y-m-d H:i:s'),
             'event_type' => fake()->randomElement([Event::VIRTUAL, Event::IN_PERSON]),
+            'rsvp_list' => json_encode([(User::factory()->create())->id, (User::factory()->create())->id, (User::factory()->create())->id, (User::factory()->create())->id]),
         ];
     }
 }

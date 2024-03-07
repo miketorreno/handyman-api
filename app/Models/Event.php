@@ -28,7 +28,7 @@ class Event extends Model
     protected $casts = [
         'date_and_time' => 'datetime',
         'event_type' => 'integer',
-        'rsvp_list' => 'array',
+        // 'rsvp_list' => 'array',
     ];
     
     public function user(): BelongsTo

@@ -22,9 +22,9 @@ class StoreQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['integer'],
-            'handyman_id' => ['integer'],
-            'quote_details' => ['string'],
+            'user_id' => ['required', 'integer'],
+            'handyman_id' => ['required', 'integer'],
+            'quote_details' => ['required', 'string'],
             'price' => ['integer'],
             'acceptance_status' => ['integer'],
             'requested' => ['boolean'],

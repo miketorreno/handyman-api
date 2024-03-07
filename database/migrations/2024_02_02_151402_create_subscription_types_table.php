@@ -24,19 +24,19 @@ return new class extends Migration
         SubscriptionType::create([
             'name' => 'Free',
             'benefits' => fake()->sentence(),
-            'price' => rand(50, 1000),
+            'price' => rand(500, 100000),
             'duration' => rand(60, 525600),
         ]);
         SubscriptionType::create([
             'name' => 'Featured',
             'benefits' => fake()->sentence(),
-            'price' => rand(50, 1000),
+            'price' => rand(500, 100000),
             'duration' => rand(60, 525600),
         ]);
         SubscriptionType::create([
             'name' => 'Premium',
             'benefits' => fake()->sentence(),
-            'price' => rand(50, 1000),
+            'price' => rand(500, 100000),
             'duration' => rand(60, 525600),
         ]);
     }

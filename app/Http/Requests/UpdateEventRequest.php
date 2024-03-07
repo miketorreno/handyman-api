@@ -22,11 +22,12 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['string'],
-            'description' => ['string'],
-            'location' => ['string'],
-            'date_and_time' => ['date'],
+            'title' => ['sometimes', 'required', 'string', 'max:255'],
+            'description' => ['sometimes', 'required', 'string'],
+            'location' => ['sometimes', 'required', 'string', 'max:255'],
+            'date_and_time' => ['sometimes', 'required', 'date'],
             'event_type' => ['integer'],
+            'rsvp_list' => ['json'],
         ];
     }
 }

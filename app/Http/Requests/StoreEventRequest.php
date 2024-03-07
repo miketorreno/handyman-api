@@ -22,11 +22,12 @@ class StoreEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'description' => ['string'],
-            'location' => ['string'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'location' => ['required', 'string', 'max:255', 'max:255'],
             'date_and_time' => ['required', 'date'],
             'event_type' => ['integer'],
+            'rsvp_list' => ['json'],
         ];
     }
 }

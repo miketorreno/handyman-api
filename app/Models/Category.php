@@ -24,7 +24,7 @@ class Category extends Model
     ];
 
     protected $casts = [
-        'hidden' => 'bool',
+        'hidden' => 'boolean',
     ];
 
     public function services(): HasMany

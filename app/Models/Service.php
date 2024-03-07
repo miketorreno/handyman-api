@@ -22,8 +22,8 @@ class Service extends Model
     ];
 
     protected $casts = [
-        'parent_id' => 'integer',
-        'hidden' => 'bool',
+        'category_id' => 'integer',
+        'hidden' => 'boolean',
     ];
 
     public function category(): BelongsTo

@@ -22,10 +22,10 @@ class StoreReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['integer'],
-            'reportable_id' => ['integer'],
-            'reportable_type' => ['string'],
-            'reason' => ['string'],
+            'user_id' => ['required', 'integer'],
+            'reportable_id' => ['required', 'integer'],
+            'reportable_type' => ['required', 'string'],
+            'reason' => ['required', 'string'],
             'report_status' => ['integer'],
         ];
     }

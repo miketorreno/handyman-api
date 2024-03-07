@@ -8,6 +8,13 @@ use App\Http\Resources\PostResource;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
+/**
+ * @group Blog Posts
+ *
+ * APIs for managing Blog Posts
+ */
+
+
 class PostController extends Controller
 {
     /**

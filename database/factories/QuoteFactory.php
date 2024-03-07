@@ -22,8 +22,8 @@ class QuoteFactory extends Factory
         return [
             'user_id' => User::factory(),
             'handyman_id' => Handyman::factory(),
-            'quote_details' => fake()->sentence(),
-            'price' => rand(11, 999999),
+            'quote_details' => fake()->paragraph(),
+            'price' => rand(100, 999999),
             'acceptance_status' => Quote::ACCEPTED,
         ];
     }

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewSeeder::class);
         $this->call(YardSaleSeeder::class);
         $this->call(ReportSeeder::class);
+        $this->call(PostSeeder::class);
     }
 }

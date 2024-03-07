@@ -73,7 +73,7 @@ class HandymanController extends Controller
     public function store(StoreHandymanRequest $request)
     {
         $handyman = new Handyman();
-        $attributes['user_id'] = auth()->id();
+        $attributes = $request->validated();
 
         $handyman = DB::transaction(function () use ($handyman, $attributes) {
             $handyman->fill(
@@ -129,7 +129,6 @@ class HandymanController extends Controller
         $this->authorize('update', $handyman);
 
         $attributes = $request->validated();
-        $attributes['user_id'] = auth()->id();
         $handyman->fill(Arr::except($attributes, ['categories', 'services']));
         // $requiresReview = $handyman->isDirty(['about', 'tools']);
 

@@ -22,11 +22,10 @@ class UpdateYardSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['integer'],
-            'title' => ['string'],
-            'description' => ['string'],
-            'location' => ['string'],
-            'date' => ['date'],
+            'title' => ['sometimes', 'required', 'string', 'max:255'],
+            'description' => ['sometimes', 'required', 'string'],
+            'location' => ['sometimes', 'required', 'string', 'max:255'],
+            'date' => ['sometimes', 'required', 'date'],
             'items' => ['json'],
         ];
     }

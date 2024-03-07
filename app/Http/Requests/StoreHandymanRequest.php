@@ -23,17 +23,19 @@ class StoreHandymanRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => ['required', 'integer'],
             'about' => ['string'],
             'tools' => ['json'],
-            'membership_level' => ['string'],
+            'membership_level' => ['string', 'max:255'],
             'reputation_score' => ['integer'],
-            'avg_rating' => ['numeric'],
-            'experience' => ['string'],
+            'avg_rating' => ['integer'],
+            'experience' => ['string', 'max:255'],
             'hire_count' => ['integer'],
             'group_type' => ['integer'],
             'group_members' => ['json'],
             'certifications' => ['json'],
             'languages' => ['json'],
+            'contact' => ['json'],
             'approval_status' => ['integer'],
 
             'categories' => ['array'],

@@ -23,7 +23,7 @@ class YardSale extends Model
 
     protected $casts = [
         'date' => 'date',
-        'items' => 'array',
+        // 'items' => 'array',
     ];
     
     public function user(): BelongsTo

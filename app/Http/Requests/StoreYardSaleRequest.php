@@ -22,11 +22,11 @@ class StoreYardSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['integer'],
-            'title' => ['string'],
-            'description' => ['string'],
-            'location' => ['string'],
-            'date' => ['date'],
+            'user_id' => ['required', 'integer'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'location' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'date'],
             'items' => ['json'],
         ];
     }

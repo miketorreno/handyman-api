@@ -24,10 +24,10 @@ class StoreReviewRequest extends FormRequest
         return [
             'user_id' => ['required', 'integer'],
             'handyman_id' => ['required', 'integer'],
-            'rating' => ['sometimes', 'integer'],
-            'review' => ['sometimes', 'string'],
-            'edited' => ['sometimes', 'bool'],
-            'requested' => ['sometimes', 'bool'],
+            'rating' => ['sometimes', 'required', 'integer', 'min:1', 'max:5'],
+            'review' => ['sometimes', 'required', 'string'],
+            'edited' => ['sometimes', 'boolean'],
+            'requested' => ['sometimes', 'boolean'],
         ];
     }
 }

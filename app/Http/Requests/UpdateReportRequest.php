@@ -22,10 +22,7 @@ class UpdateReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['integer'],
-            'reportable_id' => ['integer'],
-            'reportable_type' => ['string'],
-            'reason' => ['string'],
+            'reason' => ['sometimes', 'required', 'string'],
             'report_status' => ['integer'],
         ];
     }

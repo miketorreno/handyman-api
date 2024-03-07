@@ -15,8 +15,8 @@ class Review extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'handyman_id',
         'user_id',
+        'handyman_id',
         'rating',
         'review',
         'image_id',
@@ -26,8 +26,8 @@ class Review extends Model
 
     protected $casts = [
         'rating' => 'integer',
-        'edited' => 'bool',
-        'requested' => 'bool',
+        'edited' => 'boolean',
+        'requested' => 'boolean',
     ];
     
     public function user(): BelongsTo

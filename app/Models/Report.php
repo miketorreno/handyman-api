@@ -17,7 +17,6 @@ class Report extends Model
     const NOT_REVIEWED = 2;
 
     protected $fillable = [
-        'uid',
         'user_id',
         'reportable_id',
         'reportable_type',

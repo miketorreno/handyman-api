@@ -22,9 +22,7 @@ class UpdateQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['integer'],
-            'handyman_id' => ['integer'],
-            'quote_details' => ['string'],
+            'quote_details' => ['sometimes', 'required', 'string'],
             'price' => ['integer'],
             'acceptance_status' => ['integer'],
             'requested' => ['boolean'],
