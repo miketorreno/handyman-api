@@ -110,6 +110,10 @@ Make sure to include the authorization token.
 
 <br>
 
+#### Send the authorization token with every POST, PUT & DELETE requests
+
+<br>
+
 ## Tests
 
 ```
