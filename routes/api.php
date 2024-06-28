@@ -82,6 +82,7 @@ Route::post('/handymen/{handyman}/subscriptions', [HandymanController::class, 'u
 
 // * Reviews
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    // ->middleware(['auth:sanctum']);
 Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
 Route::post('/reviews', [ReviewController::class, 'store'])
     ->middleware(['auth:sanctum'])

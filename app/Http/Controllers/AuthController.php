@@ -30,12 +30,6 @@ class AuthController extends Controller
             'password' => ['required', 'min:6', 'confirmed'],
         ]);
 
-        // validator(request()->all(), [
-        //     'name' => ['required', 'string'],
-        //     'email' => ['required', 'email', 'unique:users,email'],
-        //     'password' => ['required', 'confirmed'],
-        // ])->validate();
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -61,39 +55,34 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
         ]);
-        
-        // validator(request()->all(), [
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required'],
-        // ])->validate();
 
-        if (EnsureFrontendRequestsAreStateful::fromFrontend(request())) {   // * 1st party frontend
-            $this->authenticateFrontend();
-        } else {    // * 3rd party frontend
-            $user = User::where('email', $request->email)->first();
-    
-            if ($user) {
-                if (Hash::check($request->password, $user->password)) {
-                    $token = $user->createToken(time())->plainTextToken;
-                    $response = [
-                        'user' => $user,
-                        'token' => $token,
-                    ];
+        // if (EnsureFrontendRequestsAreStateful::fromFrontend(request())) {   // * 1st party frontend
+        //     $this->authenticateFrontend();
+        // } else {    // * 3rd party frontend
+        $user = User::where('email', $request->email)->first();
 
-                    return response($response, 200);
-                }
-
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken(time())->plainTextToken;
                 $response = [
-                    'message' => 'Incorrect password.'
+                    'user' => $user,
+                    'token' => $token,
                 ];
-                return response($response, 400);
+
+                return response($response, 200);
             }
 
             $response = [
-                'message' => 'The provided credentials do not match our records.'
+                'message' => 'Incorrect password.'
             ];
             return response($response, 400);
         }
+
+        $response = [
+            'message' => 'The provided credentials do not match our records.'
+        ];
+        return response($response, 400);
+        // }
     }
 
     public function logout()
