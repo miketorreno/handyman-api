@@ -106,6 +106,7 @@ class AuthController extends Controller
             request()->session()->regenerateToken();
         } else {
             if (auth()->user()->currentAccessToken()) {
+                auth()->user()->tokens()->delete();
                 auth()->user()->currentAccessToken()->delete();
                 $response = [
                     'message' => 'Logged out'
@@ -115,9 +116,9 @@ class AuthController extends Controller
             }
 
             $response = [
-                'message' => 'Please login first'
+                'message' => 'Unauthenticated.'
             ];
-            return response($response, 200);
+            return response($response, 401);
         }
     }
 
