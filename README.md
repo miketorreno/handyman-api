@@ -1,16 +1,16 @@
 # Handyman API
 
-A RESTful API for the Handyman web application, built with Laravel. Provides endpoints for user authentication, job management, and admin panel access.
+A RESTful API for the Handyman web application, built with Laravel. Provides endpoints for user authentication, handyman management, and admin panel access.
 
----
+![Handyman API](public/img/handyman-api.png)
 
 ## Features
 
--   User registration, login, and authentication (API tokens)
--   Admin panel (Filament)
--   Job/task management endpoints
--   API documentation (Scribe)
+-   User authentication
+-   Admin panel
+-   Handyman management, search & filter
 -   Database migrations and seeding
+-   API documentation
 -   Ready-to-use test accounts
 -   Comprehensive test suite
 
@@ -22,12 +22,16 @@ A RESTful API for the Handyman web application, built with Laravel. Provides end
 
 ```bash
 git clone https://github.com/miketorreno/handyman-api.git
+
 cd handyman-api
 ```
 
 ### 2. Install Dependencies
 
 ```bash
+# Install PHP, Composer, and Laravel Installer (if not already installed)
+/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.4)"
+
 composer install
 ```
 
@@ -38,34 +42,45 @@ cp .env.example .env
 # Edit .env to add your database credentials
 ```
 
-### 4. Generate Application Key
+### 4. Start the Development Environment (Docker with Sail)
 
 ```bash
-php artisan key:generate
+./vendor/bin/sail up -d
+
+# Or add this alias to your shell:
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
+sail up -d
 ```
 
-### 5. Install Filament Admin Panel
+### 5. Generate Application Key
 
 ```bash
-php artisan filament:install --panels
+sail artisan key:generate
 ```
 
-### 6. Run Migrations & Seed Database
+### 6. Install Filament Admin Panel
 
 ```bash
-php artisan migrate:fresh --seed
+sail artisan filament:install --panels
 ```
 
-### 7. Generate API Documentation
+### 7. Run Migrations & Seed Database
+
+```bash
+sail artisan migrate:fresh --seed
+```
+
+### 8. Generate API Documentation
 
 ```bash
 sail artisan scribe:generate
 ```
 
-### 8. Start the Development Server
+### 9. Start the Development Server
 
 ```bash
-php artisan serve
+sail artisan serve
 ```
 
 ---
@@ -74,19 +89,21 @@ php artisan serve
 
 ### API Documentation
 
--   [http://localhost/docs](http://localhost/docs)
+-   [http://{baseUrl}/docs](http://{baseUrl}/docs)
 
 ### Admin Panel
 
--   [http://localhost/admin](http://localhost/admin)
+-   [http://{baseUrl}/admin](http://{baseUrl}/admin)
 
-#### Test Admin Accounts
+#### Test Accounts
 
 ```
-email: admin@handyman.com
+USER
+email: user@handyman.com
 password: password
 
-email: superadmin@handyman.com
+ADMIN
+email: admin@handyman.com
 password: password
 ```
 
@@ -103,7 +120,7 @@ Authorization: Bearer [token]
 
 ### Register
 
-**POST** `/api/register`
+**POST** `{baseUrl}/api/register`
 
 **Body:**
 
@@ -118,7 +135,7 @@ Returns a user object and API token.
 
 ### Login
 
-**POST** `/api/login`
+**POST** `{baseUrl}/api/login`
 
 **Body:**
 
@@ -131,7 +148,7 @@ Returns a user object and API token.
 
 ### Logout
 
-**POST** `/api/logout`
+**POST** `{baseUrl}/api/logout`
 
 Requires Authorization header.
 
@@ -139,10 +156,12 @@ Requires Authorization header.
 
 ## API Endpoints
 
--   `POST /api/register` — Register a new user
--   `POST /api/login` — Login and receive token
--   `POST /api/logout` — Logout (invalidate token)
--   Additional endpoints for jobs, tasks, etc. (see [API docs](http://localhost/docs))
+-   `GET {baseUrl}/api/handymen` — List all handymen
+-   `GET {baseUrl}/api/handymen?services={serviceIds}&categories={categoryIds}&location={location}` — Filter for handymen by category, service, or location
+-   `GET {baseUrl}/api/handymen/{handymanId}` — Get a specific handyman
+-   `GET {baseUrl}/api/categories` — List service categories
+-   `GET {baseUrl}/api/services` — List all services
+-   Additional endpoints (see [API docs](http://{baseUrl}/docs))
 
 ---
 
@@ -151,12 +170,12 @@ Requires Authorization header.
 Run the test suite:
 
 ```bash
-php artisan test
+sail artisan test
 ```
 
 ---
 
-## Contributing
+## Contribution
 
 1. Fork the repository and create your branch.
 2. Write clear, concise commits and add tests for new features.

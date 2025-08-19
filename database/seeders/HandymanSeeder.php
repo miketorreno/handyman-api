@@ -21,5 +21,6 @@ class HandymanSeeder extends Seeder
                 'role' => User::HANDYMAN,
             ]),
         ]);
+        Handyman::factory(20)->create();
     }
 }
